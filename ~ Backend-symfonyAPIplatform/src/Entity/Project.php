@@ -15,37 +15,49 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 #[ORM\Entity(repositoryClass: ProjectRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    normalizationContext: ['groups' => ['project:read']],
+    denormalizationContext: ['groups' => ['project:write']]
+)]
 class Project
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['project:read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['project:read', 'task:read'])]
     private ?string $project_name = null;
 
     /**
      * @var Collection<int, Task>
      */
     #[ORM\OneToMany(targetEntity: Task::class, mappedBy: 'project', orphanRemoval: true)]
+    #[Groups(['project:read', 'project:write'])]
+    #[MaxDepth(1)]
     private Collection $tasks;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Groups(['project:read', 'project:write'])]
     private ?string $description = null;
 
     #[ORM\ManyToOne(inversedBy: 'projects_owned')]
     #[ORM\JoinColumn(nullable: true)] // true en attendant User Fixtures etc...
+    #[Groups(['project:read', 'project:write'])]
     private ?User $owner = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Groups(['project:read', 'project:write'])]
     private ?\DateTimeInterface $start_date = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    #[Groups(['project:read', 'project:write'])]
     private ?\DateTimeInterface $end_date = null;
 
     #[ORM\Column(length: 50)]
+    #[Groups(['project:read', 'project:write'])]
     private ?string $status = null;
 
     public function __construct()
