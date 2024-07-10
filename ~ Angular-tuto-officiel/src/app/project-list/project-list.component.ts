@@ -8,15 +8,17 @@ import { ProjectService } from '../project.service';
   styleUrls: ['./project-list.component.css']
 })
 
-export class ProjectListComponent {
+export class ProjectListComponent implements OnInit {
+
 // export class ProjectListComponent implements OnInit {
-//   projects: any[] = [];
+  projects: any[] = [];
 
-//   constructor(private projectService: ProjectService) { }
+  constructor(private projectService: ProjectService) { }
 
-//   ngOnInit(): void {
-//     this.projectService.getProjects().subscribe(data => {
-//       this.projects = data['hydra:member'];
-//     });
-//   }
+  ngOnInit(): void {
+    this.projectService.getProjects().subscribe(data => {
+      this.projects = data['hydra:member'];
+    });
+  }
+  
 } 

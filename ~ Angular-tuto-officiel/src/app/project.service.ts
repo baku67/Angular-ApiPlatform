@@ -6,11 +6,12 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProjectService {
-  private apiUrl = '/api/projects';
+  private apiUrl = '/api/projects'; // todo: serialization
+  // private apiUrl = '/api/projects/33';
 
   constructor(private http: HttpClient) { }
 
   getProjects(): Observable<any> {
     return this.http.get(this.apiUrl);
   }
-}
+} 
