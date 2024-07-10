@@ -1,6 +1,23 @@
+*** Frontend:
+
+~ npm install -g @angular/cli   
+~ npm install
+~ ng new {{ projectName }}
+
+~ ng serve
+
+Test:
+http://localhost:4200
+
+~ ng generate component {{componentName}}
+
+
+
+
+**** Backend:
+
 composer create-project symfony/skeleton {{ path }}
 composer require api 
-
 
 symfony serve
 symfony server:stop
