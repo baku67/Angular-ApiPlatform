@@ -9,18 +9,23 @@ use Faker\Factory;
 
 class ProjectFixtures extends Fixture
 {
+
+    public const PROJECT_REFERENCE = 'project_';
+
+
     public function load(ObjectManager $manager): void
     {
-        // $product = new Product();
-        // $manager->persist($product);
 
         $faker = Factory::create();
 
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 5; $i++) {
             $project = new Project();
-            $project->setProjectName($faker->sentence(3));
+            $project->setProjectName($faker->company);
 
             $manager->persist($project);
+
+            // Store the project reference for use in TaskFixtures
+            $this->addReference(self::PROJECT_REFERENCE . $i, $project);
         }
 
         $manager->flush();
