@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectService } from '../project.service';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-project-details',
@@ -10,17 +11,27 @@ import { CommonModule } from '@angular/common';
   styleUrl: './project-details.component.css'
 })
 export class ProjectDetailsComponent implements OnInit {
-
   project: any = null;
 
-  constructor(private projectService: ProjectService) { }
-
+  constructor(private route: ActivatedRoute, private projectService: ProjectService) { }
 
   ngOnInit(): void {
-
-    // Test select 1 projet id:32 (vérifi id dur bdd)
-    this.projectService.getProject(32).subscribe(data => {
-      this.project = data['hydra:member'];
-    });
+    // Retrieve the project ID from the route parameters
+    const id = this.route.snapshot.paramMap.get('id');
+    console.log(`Route ID: ${id}`); // Log the ID retrieved from the route
+    if (id) {
+      this.projectService.getProject(id).subscribe({
+        next: data => {
+          console.log('Service response:', data); // Log the entire response
+          this.project = data;
+          console.log('Project:', JSON.stringify(this.project));
+        },
+        error: err => {
+          console.error('Error fetching project:', err);
+        }
+      });
+    } else {
+      console.error('No project ID found in route parameters');
+    }
   }
 }
