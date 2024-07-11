@@ -33,6 +33,9 @@ class User
     #[ORM\OneToMany(targetEntity: Project::class, mappedBy: 'owner')]
     private Collection $projects_owned;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $imgUrl = null;
+
     public function __construct()
     {
         $this->projects_owned = new ArrayCollection();
@@ -117,6 +120,18 @@ class User
                 $projectsOwned->setOwner(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getImgUrl(): ?string
+    {
+        return $this->imgUrl;
+    }
+
+    public function setImgUrl(?string $imgUrl): static
+    {
+        $this->imgUrl = $imgUrl;
 
         return $this;
     }
