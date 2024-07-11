@@ -64,10 +64,19 @@ class User
     #[MaxDepth(1)]
     private Collection $projects_member;
 
+    /**
+     * @var Collection<int, Task>
+     */
+    #[ORM\ManyToMany(targetEntity: Task::class, mappedBy: 'assignated_members')]
+    #[Groups(['user:read', 'user:write'])]
+    #[MaxDepth(1)]
+    private Collection $tasks_assignated;
+
     public function __construct()
     {
         $this->projects_owned = new ArrayCollection();
         $this->projects_member = new ArrayCollection();
+        $this->tasks_assignated = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -185,6 +194,33 @@ class User
     public function removeProjectsMember(Project $projectsMember): static
     {
         $this->projects_member->removeElement($projectsMember);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Task>
+     */
+    public function getTasksAssignated(): Collection
+    {
+        return $this->tasks_assignated;
+    }
+
+    public function addTasksAssignated(Task $tasksAssignated): static
+    {
+        if (!$this->tasks_assignated->contains($tasksAssignated)) {
+            $this->tasks_assignated->add($tasksAssignated);
+            $tasksAssignated->addAssignatedMember($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTasksAssignated(Task $tasksAssignated): static
+    {
+        if ($this->tasks_assignated->removeElement($tasksAssignated)) {
+            $tasksAssignated->removeAssignatedMember($this);
+        }
 
         return $this;
     }

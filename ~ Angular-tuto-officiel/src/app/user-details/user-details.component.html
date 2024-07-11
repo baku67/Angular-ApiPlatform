@@ -1,5 +1,5 @@
 <p>{{user?.username}}</p>
-<img [src]="user?.imgUrl" />
+<img class="userPic" [src]="user?.imgUrl" />
 
 <h3>Projets managés</h3>
 <div *ngIf="user && user.projects_owned && user.projects_owned.length > 0">
@@ -16,5 +16,15 @@
         <a [routerLink]="['/projects', project.id]">
             <p>Projet "{{ project.project_name }}"</p>
         </a>
+    </div>
+</div>
+
+
+<h3>Tâches assignées</h3>
+<div *ngIf="user && user.tasks_assignated && user.tasks_assignated.length > 0">
+    <div *ngFor="let task of user.tasks_assignated">
+        <!-- <a [routerLink]="['/projects', project.id]"> -->
+            <p>Tâche "{{ task.task_name }}"</p>
+        <!-- </a> -->
     </div>
 </div>

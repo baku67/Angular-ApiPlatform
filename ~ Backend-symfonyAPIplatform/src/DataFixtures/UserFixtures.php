@@ -30,7 +30,7 @@ class UserFixtures extends Fixture
                 ->setEmail($result['email']) 
                 ->setPassword('password123') // Set a default password
                 ->setRoles('ROLE_USER') // Default role as an array
-                ->setImgUrl($result['picture']['thumbnail']);
+                ->setImgUrl($result['picture']['large']);
 
             $manager->persist($user);
 

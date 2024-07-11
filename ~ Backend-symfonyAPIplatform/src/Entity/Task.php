@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\TaskRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 use ApiPlatform\Metadata\ApiResource;
@@ -20,6 +22,7 @@ class Task
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['task:read', 'user:read'])]
     private ?string $task_name = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
@@ -27,10 +30,25 @@ class Task
 
     #[ORM\ManyToOne(inversedBy: 'tasks')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['task:read', 'user:read'])]
     private ?Project $project = null;
 
     #[ORM\Column(length: 100)]
+    #[Groups(['task:read', 'user:read'])]
     private ?string $status = null;
+
+    /**
+     * @var Collection<int, User>
+     */
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'tasks_assignated')]
+    // #[Groups(['user:read'])]
+    // #[MaxDepth(1)]
+    private Collection $assignated_members;
+
+    public function __construct()
+    {
+        $this->assignated_members = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -81,6 +99,30 @@ class Task
     public function setStatus(string $status): static
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getAssignatedMembers(): Collection
+    {
+        return $this->assignated_members;
+    }
+
+    public function addAssignatedMember(User $assignatedMember): static
+    {
+        if (!$this->assignated_members->contains($assignatedMember)) {
+            $this->assignated_members->add($assignatedMember);
+        }
+
+        return $this;
+    }
+
+    public function removeAssignatedMember(User $assignatedMember): static
+    {
+        $this->assignated_members->removeElement($assignatedMember);
 
         return $this;
     }
