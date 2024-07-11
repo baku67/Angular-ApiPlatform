@@ -47,7 +47,7 @@ class User
     /**
      * @var Collection<int, Project>
      */
-    #[ORM\OneToMany(targetEntity: Project::class, mappedBy: 'owner')]
+    #[ORM\OneToMany(targetEntity: Project::class, mappedBy: 'owner', orphanRemoval: true)]
     #[Groups(['user:read', 'user:write'])]
     #[MaxDepth(1)]
     private Collection $projects_owned;
@@ -56,9 +56,18 @@ class User
     #[Groups(['user:read', 'user:write'])]
     private ?string $imgUrl = null;
 
+    /**
+     * @var Collection<int, Project>
+     */
+    #[ORM\ManyToMany(targetEntity: Project::class, inversedBy: 'members')]
+    #[Groups(['user:read', 'user:write'])]
+    #[MaxDepth(1)]
+    private Collection $projects_member;
+
     public function __construct()
     {
         $this->projects_owned = new ArrayCollection();
+        $this->projects_member = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -152,6 +161,30 @@ class User
     public function setImgUrl(?string $imgUrl): static
     {
         $this->imgUrl = $imgUrl;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Project>
+     */
+    public function getProjectsMember(): Collection
+    {
+        return $this->projects_member;
+    }
+
+    public function addProjectsMember(Project $projectsMember): static
+    {
+        if (!$this->projects_member->contains($projectsMember)) {
+            $this->projects_member->add($projectsMember);
+        }
+
+        return $this;
+    }
+
+    public function removeProjectsMember(Project $projectsMember): static
+    {
+        $this->projects_member->removeElement($projectsMember);
 
         return $this;
     }

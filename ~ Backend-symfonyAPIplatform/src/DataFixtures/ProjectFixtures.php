@@ -43,6 +43,15 @@ class ProjectFixtures extends Fixture implements DependentFixtureInterface
             // Assign a random user as the owner of the project
             $randomUser = $users[array_rand($users)];
             $project->setOwner($randomUser);
+            // Ensure the owner is added as a member if not already added
+            $project->addMember($randomUser);
+
+            // Add multiple random members to the project
+            $membersCount = mt_rand(1, 3); // Randomly choose between 1 to 3 members
+            $randomMembers = $this->getRandomMembers($users, $membersCount);
+            foreach ($randomMembers as $member) {
+                $project->addMember($member);
+            }
 
             $manager->persist($project);
 
@@ -52,6 +61,20 @@ class ProjectFixtures extends Fixture implements DependentFixtureInterface
 
         $manager->flush();
     }
+
+
+    private function getRandomMembers(array $users, int $count): array
+    {
+        $randomKeys = array_rand($users, $count);
+        $randomMembers = [];
+        foreach ($randomKeys as $key) {
+            $randomMembers[] = $users[$key];
+        }
+        return $randomMembers;
+    }
+
+
+
 
     public function getDependencies(): array
     {

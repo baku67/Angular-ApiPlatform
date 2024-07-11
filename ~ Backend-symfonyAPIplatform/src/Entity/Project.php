@@ -43,8 +43,8 @@ class Project
     #[Groups(['project:read', 'project:write'])]
     private ?string $description = null;
 
-    #[ORM\ManyToOne(inversedBy: 'projects_owned')]
-    #[ORM\JoinColumn(nullable: true)] // true en attendant User Fixtures etc...
+    #[ORM\ManyToOne(inversedBy: 'projects_owned', cascade: ['remove'])]
+    #[ORM\JoinColumn(nullable: true, onDelete:"CASCADE")] // true en attendant pour les Fixtures
     #[Groups(['project:read', 'project:write'])]
     private ?User $owner = null;
 
@@ -60,9 +60,18 @@ class Project
     #[Groups(['project:read', 'project:write'])]
     private ?string $status = null;
 
+    /**
+     * @var Collection<int, User>
+     */
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'projects_member')]
+    #[Groups(['project:read', 'project:write'])]
+    #[MaxDepth(1)]
+    private Collection $members;
+
     public function __construct()
     {
         $this->tasks = new ArrayCollection();
+        $this->members = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -168,6 +177,33 @@ class Project
     public function setStatus(string $status): static
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getMembers(): Collection
+    {
+        return $this->members;
+    }
+
+    public function addMember(User $member): static
+    {
+        if (!$this->members->contains($member)) {
+            $this->members->add($member);
+            $member->addProjectsMember($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMember(User $member): static
+    {
+        if ($this->members->removeElement($member)) {
+            $member->removeProjectsMember($this);
+        }
 
         return $this;
     }
