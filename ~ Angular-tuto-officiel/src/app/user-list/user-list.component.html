@@ -1,0 +1,21 @@
+
+<h2>Utilisateurs</h2>
+
+
+<div *ngIf="users.length > 0">
+
+  <ul>
+    <li *ngFor="let user of users">
+
+      <a [routerLink]="['/users', user.id]">
+        {{ user.username }}
+      </a>
+
+    </li> 
+  </ul>
+
+</div>
+
+<div *ngIf="users.length === 0">
+  <p>No users found.</p>
+</div>

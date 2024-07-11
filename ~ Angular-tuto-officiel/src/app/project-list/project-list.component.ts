@@ -14,12 +14,8 @@ import { RouterLink } from '@angular/router';
 export class ProjectListComponent implements OnInit { 
 
   projects: any[] = [];
-  // Test:
-  // project: any = null;
-
 
   constructor(private projectService: ProjectService) { }
-
 
   ngOnInit(): void {
 
@@ -27,10 +23,6 @@ export class ProjectListComponent implements OnInit {
       this.projects = data['hydra:member'];
     });
 
-    // Test select 1 projet (vérifi id dur bdd)
-    // this.projectService.getProject(32).subscribe(data => {
-    //   this.project = data['hydra:member'];
-    // });
   }
   
 } 

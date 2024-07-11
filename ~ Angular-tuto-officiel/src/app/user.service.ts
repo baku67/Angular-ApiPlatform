@@ -5,17 +5,17 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ProjectService {
-  
-  private apiUrl = '/api/projects'; 
+export class UserService {
+
+  private apiUrl = '/api/users'; 
 
   constructor(private http: HttpClient) { }
 
-  getProjects(): Observable<any> {
+  getUsers(): Observable<any> {
     return this.http.get(this.apiUrl);
   }
 
-  getProject(projectId: any): Observable<any> {
-    return this.http.get(`${this.apiUrl}/${projectId}`);
+  getUser(userId: any): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${userId}`);
   }
-} 
+}

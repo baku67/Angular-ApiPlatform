@@ -8,5 +8,5 @@
 
 Test:
 http://localhost:4200
-
+ 
 ~ ng generate component {{componentName}}
