@@ -1,7 +1,16 @@
 <p>{{user?.username}}</p>
 <img [src]="user?.imgUrl" />
 
-<h3>Chef de projet</h3>
-<div *ngFor="let project of user.projects_owned">
-    <p>Porjet</p>
+<h3>Projets managés</h3>
+<div *ngIf="user && user.projects_owned && user.projects_owned.length > 0">
+    <div *ngFor="let project of user.projects_owned">
+        <p>Porjet {{project.project_name}}</p>
+    </div>
+</div>
+
+<h3>Membres</h3>
+<div *ngIf="user && user.projects_member && user.projects_member.length > 0">
+    <div *ngFor="let project of user.projects_member">
+        <p>Projet {{ project.project_name }}</p>
+    </div>
 </div>

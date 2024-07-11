@@ -47,7 +47,7 @@ class ProjectFixtures extends Fixture implements DependentFixtureInterface
             $project->addMember($randomUser);
 
             // Add multiple random members to the project
-            $membersCount = mt_rand(1, 3); // Randomly choose between 1 to 3 members
+            $membersCount = mt_rand(2, 4); // Randomly choose between 1 to 3 members
             $randomMembers = $this->getRandomMembers($users, $membersCount);
             foreach ($randomMembers as $member) {
                 $project->addMember($member);

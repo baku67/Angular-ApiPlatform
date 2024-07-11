@@ -65,7 +65,7 @@ class Project
      */
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'projects_member')]
     #[Groups(['project:read', 'project:write'])]
-    #[MaxDepth(1)]
+    #[MaxDepth(2)]
     private Collection $members;
 
     public function __construct()

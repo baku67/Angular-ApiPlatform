@@ -49,7 +49,7 @@ class User
      */
     #[ORM\OneToMany(targetEntity: Project::class, mappedBy: 'owner', orphanRemoval: true)]
     #[Groups(['user:read', 'user:write'])]
-    #[MaxDepth(1)]
+    #[MaxDepth(2)]
     private Collection $projects_owned;
 
     #[ORM\Column(length: 255, nullable: true)]
