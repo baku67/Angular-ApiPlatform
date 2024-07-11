@@ -2,13 +2,17 @@
 <h2>Utilisateurs</h2>
 
 
-<div *ngIf="users.length > 0">
+<div class="user-list-container" *ngIf="users.length > 0">
 
   <ul>
+
     <li *ngFor="let user of users">
 
       <a [routerLink]="['/users', user.id]">
-        {{ user.username }}
+        <div>
+            <img [src]="user.imgUrl" />
+            <span>{{ user.username }}</span>
+        </div>
       </a>
 
     </li> 

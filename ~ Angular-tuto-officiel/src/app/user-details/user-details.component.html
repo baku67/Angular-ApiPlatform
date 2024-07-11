@@ -1,2 +1,7 @@
 <p>{{user?.username}}</p>
 <img [src]="user?.imgUrl" />
+
+<h3>Chef de projet</h3>
+<div *ngFor="let project of user.projects_owned">
+    <p>Porjet</p>
+</div>

@@ -1,0 +1,40 @@
+
+
+.user-list-container {
+    width: 50%;
+    margin: 50px auto;
+}
+
+ul {
+    list-style-type: none;
+    padding-inline-start: 0px;
+}
+li {
+    margin: 10px auto;
+}
+
+
+a {
+    text-decoration: none;
+    height: fit-content;
+    display: block;
+    color: black;
+    padding: 7px 4px 2px 9px;
+    background-color: lightcyan;
+    border-radius: 4px;
+
+    transition: all 0.3s;
+}
+a:hover {
+    background-color: rgb(197, 240, 240);
+}
+a div {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    
+}
+a div img {
+    border-radius: 50px;
+}
+
