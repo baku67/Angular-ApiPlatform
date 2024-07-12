@@ -22,6 +22,7 @@ class Task
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['task:read', 'user:read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
@@ -29,6 +30,7 @@ class Task
     private ?string $task_name = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Groups(['task:read', 'user:read'])]
     private ?string $task_description = null;
 
     #[ORM\ManyToOne(inversedBy: 'tasks')]

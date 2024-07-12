@@ -13,6 +13,8 @@ class TaskFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
+        $faker = Factory::create();
+
         // Loop through each project fixture
         for ($i = 0; $i < 5; $i++) {
             // Get the reference to the project
@@ -21,12 +23,14 @@ class TaskFixtures extends Fixture implements DependentFixtureInterface
             // Get members of the current project
             $members = $project->getMembers();
 
+            $statuses = ['planning', 'in_progress', 'completed', 'on_hold', 'cancelled'];
+
             // Create tasks for the current project
             for ($j = 0; $j < mt_rand(3, 7); $j++) {
                 $task = new Task();
-                $task->setTaskName('Task ' . ($j + 1));
-                $task->setTaskDescription('Description for Task ' . ($j + 1));
-                $task->setStatus('pending'); // Set a default status, or randomize as needed
+                $task->setTaskName('Task ' . ($j + 1) . ": " . $faker->sentence(3));
+                $task->setTaskDescription($faker->paragraph(2));
+                $task->setStatus($statuses[array_rand($statuses)]); // Set a default status, or randomize as needed
 
                 // Assign the project to the task
                 $task->setProject($project);

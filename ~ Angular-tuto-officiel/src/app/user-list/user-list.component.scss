@@ -1,3 +1,4 @@
+// @import 'src/variables.scss'; 
 
 
 .user-list-container {
@@ -22,6 +23,7 @@ a {
     padding: 7px 4px 2px 9px;
     background-color: lightcyan;
     border-radius: 4px;
+    border-left: 6px solid var(--secondary-color);
 
     transition: all 0.3s;
 }
