@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
-import { ProjectDetailsComponent } from './project-details/project-details.component';
-import { ProjectListComponent } from './project-list/project-list.component';
-import { UserListComponent } from './user-list/user-list.component';
-import { UserDetailsComponent } from './user-details/user-details.component';
-import { TaskListComponent } from './task-list/task-list.component';
-import { TaskDetailsComponent } from './task-details/task-details.component';
+import { ProjectDetailsComponent } from './components/project-details/project-details.component';
+import { ProjectListComponent } from './components/project-list/project-list.component';
+import { UserListComponent } from './components/user-list/user-list.component';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
+import { TaskListComponent } from './components/task-list/task-list.component';
+import { TaskDetailsComponent } from './components/task-details/task-details.component';
 
 export const routes: Routes = [
     { path: 'projects', component: ProjectListComponent },
