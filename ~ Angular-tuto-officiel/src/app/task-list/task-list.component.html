@@ -1,0 +1,24 @@
+<h2>Tâches globales</h2>
+
+
+<div class="list-container" *ngIf="tasks.length > 0">
+
+  <ul>
+
+    <li *ngFor="let task of tasks">
+
+      <a [routerLink]="['/tasks', task.id]">
+        <div>
+            <!-- <img [src]="task.imgUrl" /> -->
+            <span>{{ task.task_name }}</span>
+        </div>
+      </a>
+
+    </li> 
+  </ul>
+
+</div>
+
+<div *ngIf="tasks.length === 0">
+  <p>No tasks found.</p>
+</div>

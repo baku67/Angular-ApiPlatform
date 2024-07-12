@@ -1,4 +1,15 @@
 <div class="container">
-    <h1>Toudoulist</h1>
+    <h1>Gestionnaire de projets</h1>
+
+    <nav>
+        <a [routerLink]="['/']" [class.active]="activeTab === 'home'" (click)="toggleNavActive('home')">Home</a>
+
+        <a [routerLink]="['/projects']" [class.active]="activeTab === 'projects'" (click)="toggleNavActive('projects')">Projets</a>
+
+        <a [routerLink]="['/users']" [class.active]="activeTab === 'users'" (click)="toggleNavActive('users')">Utilisateurs</a>
+
+        <a [routerLink]="['/tasks']" [class.active]="activeTab === 'tasks'" (click)="toggleNavActive('tasks')">Tâches</a>
+    </nav>
+
 </div>
 

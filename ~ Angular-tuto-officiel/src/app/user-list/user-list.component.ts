@@ -14,12 +14,12 @@ export class UserListComponent implements OnInit {
 
   users: any[] = [];
 
-  constructor(private UserService: UserService
+  constructor(private userService: UserService
   ) { }
 
   ngOnInit(): void {
 
-    this.UserService.getUsers().subscribe(data => {
+    this.userService.getUsers().subscribe(data => {
       this.users = data['hydra:member'];
     });
 

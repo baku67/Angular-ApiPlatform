@@ -4,7 +4,7 @@
 ~ npm install
 ~ ng new {{ projectName }}
 
-~ ng serve
+~ ng serve ( ou ng serve --host 0.0.0.0 --port 4200 pour test réseau local)
 
 Test:
 http://localhost:4200
@@ -19,7 +19,9 @@ http://localhost:4200
 composer create-project symfony/skeleton {{ path }}
 composer require api 
 
-symfony serve
+composer install
+
+symfony serve (ou php -S 0.0.0.0:8000 -t public pour test réseau local)
 symfony server:stop
 
 symfony console doctrine:database:create
