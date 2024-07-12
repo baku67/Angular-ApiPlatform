@@ -1,10 +1,8 @@
 <h2>Tâches globales</h2>
 
 
-<div class="list-container" *ngIf="tasks.length > 0">
-
+<div class="list-container" *ngIf="tasks && tasks.length > 0">
   <ul>
-
     <li *ngFor="let task of tasks">
 
       <a [routerLink]="['/tasks', task.id]">
@@ -16,9 +14,13 @@
 
     </li> 
   </ul>
-
 </div>
 
-<div *ngIf="tasks.length === 0">
-  <p>No tasks found.</p>
+<div *ngIf="errors">
+  <h2>ERREUR</h2>
+  <p>Description: Erreur {{errors.error.status}}: "{{errors.error.detail}}"</p>
+</div>
+
+<div *ngIf="isLoading">
+  <p>Chargement en cours...</p>
 </div>

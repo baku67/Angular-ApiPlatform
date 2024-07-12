@@ -1,9 +1,7 @@
 
 <h2>Projets</h2>
 
-
-<div *ngIf="projects.length > 0">
-
+<div *ngIf="projects && projects.length > 0">
   <ul>
     <li *ngFor="let project of projects">
 
@@ -13,9 +11,15 @@
 
     </li> 
   </ul>
-
 </div>
 
-<div *ngIf="projects.length === 0">
-  <p>No projects found.</p>
+<div *ngIf="errors">
+  <h2>ERREUR</h2>
+  <p>Description: Erreur {{errors.error.status}}: "{{errors.error.detail}}"</p>
 </div>
+
+<div *ngIf="isLoading">
+  <p>Chargement en cours...</p>
+</div>
+
+

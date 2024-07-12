@@ -1,30 +1,39 @@
-<p>{{user?.username}}</p>
-<img class="userPic" [src]="user?.imgUrl" />
+<div *ngIf="user">
 
-<h3>Projets managés</h3>
-<div *ngIf="user && user.projects_owned && user.projects_owned.length > 0">
-    <div *ngFor="let project of user.projects_owned">
-        <a [routerLink]="['/projects', project.id]">
-            <p>Porjet "{{project.project_name}}"</p>
-        </a>
+    <h2>{{user?.username}}</h2>
+    <img class="userPic" [src]="user?.imgUrl" />
+
+    <h3>Projets managés</h3>
+    <div *ngIf="user && user.projects_owned && user.projects_owned.length > 0">
+        <div *ngFor="let project of user.projects_owned">
+            <a [routerLink]="['/projects', project.id]">
+                <p>Porjet "{{project.project_name}}"</p>
+            </a>
+        </div>
     </div>
+
+    <h3>Membres</h3>
+    <div *ngIf="user && user.projects_member && user.projects_member.length > 0">
+        <div *ngFor="let project of user.projects_member">
+            <a [routerLink]="['/projects', project.id]">
+                <p>Projet "{{ project.project_name }}"</p>
+            </a>
+        </div>
+    </div>
+
+
+    <h3>Tâches assignées</h3>
+    <div *ngIf="user && user.tasks_assignated && user.tasks_assignated.length > 0">
+        <div *ngFor="let task of user.tasks_assignated">
+            <!-- <a [routerLink]="['/projects', project.id]"> -->
+                <p>Tâche "{{ task.task_name }}"</p>
+            <!-- </a> -->
+        </div>
+    </div>
+    
 </div>
 
-<h3>Membres</h3>
-<div *ngIf="user && user.projects_member && user.projects_member.length > 0">
-    <div *ngFor="let project of user.projects_member">
-        <a [routerLink]="['/projects', project.id]">
-            <p>Projet "{{ project.project_name }}"</p>
-        </a>
-    </div>
-</div>
 
-
-<h3>Tâches assignées</h3>
-<div *ngIf="user && user.tasks_assignated && user.tasks_assignated.length > 0">
-    <div *ngFor="let task of user.tasks_assignated">
-        <!-- <a [routerLink]="['/projects', project.id]"> -->
-            <p>Tâche "{{ task.task_name }}"</p>
-        <!-- </a> -->
-    </div>
+<div *ngIf="isLoading">
+    Chargement en cours...
 </div>

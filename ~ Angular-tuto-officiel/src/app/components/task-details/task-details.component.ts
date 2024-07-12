@@ -14,7 +14,7 @@ export class TaskDetailsComponent implements OnInit {
 
   task: any = null;
   errors: any = null;
-  isLoading: boolean = false; // Déclaration de la variable isLoading
+  isLoading: boolean = false; 
 
   constructor(private route: ActivatedRoute, private taskService: TaskService) { }
 

@@ -1,8 +1,30 @@
-<p>Projet "{{project?.project_name}}"</p>
+
+<!-- project owner -->
+
+<!-- ngFor User[] members (todo liaison ManyToMany ?)-->
+
+<!-- nogFor tasks -->
 
 
-      <!-- project owner -->
+<div *ngIf="project">
 
-      <!-- ngFor User[] members (todo liaison ManyToMany ?)-->
+      <h2>Projet #{{project.id}}: {{project?.project_name}} </h2>
+      <p>Description: {{project.description}}</p>
+      <p>Initié le {{project.start_date | date }}</p>
+      <span>Chef de projet: </span><a [routerLink]="['/users/', project.owner.id]">{{project.owner.username}}</a>
 
-      <!-- nogFor tasks -->
+      <h3>Membres:</h3>
+
+      <h3>Tâches:</h3>
+
+
+</div>
+      
+<div *ngIf="errors">
+      <h2>ERREUR</h2>
+      <p>Description: Erreur {{errors.error.status}}: "{{errors.error.detail}}"</p>
+</div>
+
+<div *ngIf="isLoading">
+      <p>Chargement en cours...</p>
+</div>

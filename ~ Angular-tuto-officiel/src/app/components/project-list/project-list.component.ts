@@ -14,13 +14,23 @@ import { RouterLink } from '@angular/router';
 export class ProjectListComponent implements OnInit { 
 
   projects: any[] = [];
+  errors: any = null;
+  isLoading: boolean = false; 
 
   constructor(private projectService: ProjectService) { }
 
   ngOnInit(): void {
 
-    this.projectService.getProjects().subscribe(data => {
-      this.projects = data['hydra:member'];
+    this.isLoading = true; 
+    this.projectService.getProjects().subscribe({
+      next: data => {
+        this.projects = data['hydra:member'];
+        this.isLoading = false;
+      },
+      error: err => {
+        console.error('Error fetching projects:', err);
+        this.isLoading = false; 
+      }
     });
 
   }

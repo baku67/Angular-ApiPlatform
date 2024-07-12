@@ -2,7 +2,7 @@
 <h2>Utilisateurs</h2>
 
 
-<div class="list-container" *ngIf="users.length > 0">
+<div class="list-container" *ngIf="users && users.length > 0">
 
   <ul>
 
@@ -20,6 +20,11 @@
 
 </div>
 
-<div *ngIf="users.length === 0">
-  <p>No users found.</p>
+<div *ngIf="errors">
+  <h2>ERREUR</h2>
+  <p>Description: Erreur {{errors.error.status}}: "{{errors.error.detail}}"</p>
+</div>
+
+<div *ngIf="isLoading">
+  <p>Chargement en cours...</p>
 </div>

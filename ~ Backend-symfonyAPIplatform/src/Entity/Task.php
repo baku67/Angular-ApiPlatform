@@ -22,15 +22,15 @@ class Task
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['task:read', 'user:read'])]
+    #[Groups(['task:read', 'user:read', 'project:read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['task:read', 'user:read'])]
+    #[Groups(['task:read', 'user:read', 'project:read'])]
     private ?string $task_name = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    #[Groups(['task:read', 'user:read'])]
+    #[Groups(['task:read', 'user:read', 'project:read'])]
     private ?string $task_description = null;
 
     #[ORM\ManyToOne(inversedBy: 'tasks')]
@@ -39,13 +39,14 @@ class Task
     private ?Project $project = null;
 
     #[ORM\Column(length: 100)]
-    #[Groups(['task:read', 'user:read'])]
+    #[Groups(['task:read', 'user:read', 'project:read'])]
     private ?string $status = null;
 
     /**
      * @var Collection<int, User>
      */
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'tasks_assignated')]
+    #[Groups(['task:read', 'project:read'])]
     // #[Groups(['user:read'])]
     // #[MaxDepth(1)]
     private Collection $assignated_members;

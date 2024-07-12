@@ -13,14 +13,26 @@ import { RouterLink } from '@angular/router';
 export class UserListComponent implements OnInit {
 
   users: any[] = [];
+  errors: any = null;
+  isLoading: boolean = false;
 
   constructor(private userService: UserService
   ) { }
 
   ngOnInit(): void {
 
-    this.userService.getUsers().subscribe(data => {
-      this.users = data['hydra:member'];
+    this.isLoading = true;
+
+    this.userService.getUsers().subscribe({
+      next: data => {
+        this.users = data['hydra:member'];
+        this.isLoading = false;
+      },
+      error: err => {
+        this.errors = err;
+        this.isLoading = false;
+      }
+      
     });
 
   }

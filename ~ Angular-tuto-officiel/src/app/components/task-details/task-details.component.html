@@ -1,9 +1,9 @@
 
 <div *ngIf="task">
-    <h2>Tâches #{{task.id}} </h2>
-
+    <h2>Tâche #{{task.id}}: {{task.task_name}} </h2>
     <p>Description: {{task.task_description}}</p>
 </div>
+
 <div *ngIf="errors">
     <h2>ERREUR</h2>
     <p>Description: Erreur {{errors.error.status}}: "{{errors.error.detail}}"</p>
@@ -11,4 +11,4 @@
 
 <div *ngIf="isLoading">
     <p>Chargement en cours...</p>
-  </div>
+</div>

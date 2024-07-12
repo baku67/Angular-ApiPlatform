@@ -28,7 +28,7 @@ class TaskFixtures extends Fixture implements DependentFixtureInterface
             // Create tasks for the current project
             for ($j = 0; $j < mt_rand(3, 7); $j++) {
                 $task = new Task();
-                $task->setTaskName('Task ' . ($j + 1) . ": " . $faker->sentence(3));
+                $task->setTaskName($faker->sentence(3));
                 $task->setTaskDescription($faker->paragraph(2));
                 $task->setStatus($statuses[array_rand($statuses)]); // Set a default status, or randomize as needed
 
