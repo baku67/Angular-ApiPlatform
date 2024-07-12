@@ -1,1 +1,14 @@
-<p>task-details works!</p>
+
+<div *ngIf="task">
+    <h2>Tâches #{{task.id}} </h2>
+
+    <p>Description: {{task.task_description}}</p>
+</div>
+<div *ngIf="errors">
+    <h2>ERREUR</h2>
+    <p>Description: Erreur {{errors.error.status}}: "{{errors.error.detail}}"</p>
+</div>
+
+<div *ngIf="isLoading">
+    <p>Chargement en cours...</p>
+  </div>
