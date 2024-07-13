@@ -25,6 +25,10 @@ a {
     border-radius: 4px;
     border-left: 6px solid var(--secondary-color);
 
+    display: inline-flex;
+    width: 100%;
+    justify-content: space-between;
+
     transition: all 0.3s;
 }
 a:hover {

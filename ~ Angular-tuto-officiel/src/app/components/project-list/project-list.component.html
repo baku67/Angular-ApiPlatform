@@ -1,25 +1,44 @@
 
-<h2>Projets</h2>
-
-<div *ngIf="projects && projects.length > 0">
-  <ul>
-    <li *ngFor="let project of projects">
-
-      <a [routerLink]="['/projects', project.id]">
-        {{ project.project_name }}
-      </a>
-
-    </li> 
-  </ul>
+<div>
+  <h2>Projets</h2>
+  <button (click)="toggleForm()">{{formBtnText}}</button>
 </div>
 
-<div *ngIf="errors">
-  <h2>ERREUR</h2>
-  <p>Description: Erreur {{errors.error.status}}: "{{errors.error.detail}}"</p>
+
+<div *ngIf="!isFormToggled; else elseBlock">
+
+  <div *ngIf="projects && projects.length > 0">
+    <ul>
+      <li *ngFor="let project of projects">
+
+        <a [routerLink]="['/projects', project.id]">
+          <span>{{ project.project_name }}</span>
+          <div>
+            <span class="alignItems">{{ project.tasks.length }} <span class="material-icons">task</span></span> 
+            <span class="alignItems">{{ project.members.length }} <span class="material-icons">people</span></span> 
+          </div>
+        </a>
+
+      </li> 
+    </ul>
+  </div>
+
+  <div *ngIf="errors">
+    <h2>ERREUR</h2>
+    <p>Description: Erreur {{errors.error.status}}: "{{errors.error.detail}}"</p>
+  </div>
+
+  <div *ngIf="isLoading">
+    <p>Chargement en cours...</p>
+  </div>
+
 </div>
 
-<div *ngIf="isLoading">
-  <p>Chargement en cours...</p>
-</div>
+
+<ng-template #elseBlock>
+  <p>Formulaire création Projet</p>
+</ng-template>
+
+
 
 

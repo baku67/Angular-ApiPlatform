@@ -1,0 +1,56 @@
+/* // @import 'src/variables.scss';  */
+
+
+.user-list-container {
+    width: 50%;
+    margin: 50px auto;
+}
+
+ul {
+    list-style-type: none;
+    padding-inline-start: 0px;
+}
+li {
+    margin: 10px auto;
+}
+
+
+.alignItems {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+
+a {
+    text-decoration: none;
+    height: fit-content;
+    display: block;
+    color: black;
+    padding: 7px 12px 9px 9px;
+    background-color: lightcyan;
+    border-radius: 4px;
+    border-left: 6px solid var(--secondary-color);
+
+    display: inline-flex;
+    width: 100%;
+    justify-content: space-between;
+
+    transition: all 0.3s;
+}
+a:hover {
+    background-color: rgb(197, 240, 240);
+}
+a div {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    
+}
+a div img {
+    border-radius: 50px;
+    width: 50px;
+}
+
+
+

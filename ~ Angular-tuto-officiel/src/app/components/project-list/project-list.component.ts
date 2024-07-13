@@ -17,7 +17,18 @@ export class ProjectListComponent implements OnInit {
   errors: any = null;
   isLoading: boolean = false; 
 
+  isFormToggled: boolean = false;
+  formBtnText: string = "Nouveau";
+
   constructor(private projectService: ProjectService) { }
+
+
+  public toggleForm() {
+    console.log("toggleForm")
+    this.isFormToggled = !this.isFormToggled;
+    this.formBtnText = "Retour"
+  }
+
 
   ngOnInit(): void {
 
