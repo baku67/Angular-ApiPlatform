@@ -13,10 +13,19 @@ export class TaskService {
 
   constructor(private http: HttpClient) { }
 
-  getTasks(): Observable<Task[]> {
-    return this.http.get<any>(this.apiUrl).pipe(
+  
+  getTasks(pagination:boolean, itemsPerPage:number): Observable<Task[]> {
+    
+    const params = { 'pagination': pagination.toString(), 'itemsPerPage': itemsPerPage.toString() }; // Paramètres de pagination
+
+    return this.http.get<any>(this.apiUrl, { params }).pipe(
       map(data => {
+        if (data && Array.isArray(data['hydra:member'])) {
           return data['hydra:member'].map((item: any) => new Task(item));
+        } else {
+          console.error('Expected an array but got:', data);
+          return [];
+        }
       })
     );
   }

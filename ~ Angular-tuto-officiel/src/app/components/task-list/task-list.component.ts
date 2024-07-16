@@ -25,7 +25,7 @@ export class TaskListComponent implements OnInit {
 
     this.isLoading = true;
 
-    this.taskService.getTasks().subscribe({
+    this.taskService.getTasks(true, 30).subscribe({
       next: (data: Task[]) => {
         this.tasks = data;
         this.isLoading = false;

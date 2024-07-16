@@ -25,7 +25,7 @@ export class UserListComponent implements OnInit {
 
     this.isLoading = true;
 
-    this.userService.getUsers().subscribe({
+    this.userService.getUsers(true, 10).subscribe({
       next: (data: User[]) => {
         this.users = data;
         this.isLoading = false;

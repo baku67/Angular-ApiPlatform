@@ -17,7 +17,7 @@ class UserFixtures extends Fixture
 
         // Fetch 5 random users from randomuser.me
         $response = $client->request('GET', 'https://randomuser.me/api/', [
-            'query' => ['results' => 5]
+            'query' => ['results' => 9]
         ]);
 
         $data = json_decode($response->getBody()->getContents(), true);
