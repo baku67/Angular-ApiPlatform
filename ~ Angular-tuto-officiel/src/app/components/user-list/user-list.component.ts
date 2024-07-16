@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-user-list',
@@ -12,7 +13,7 @@ import { RouterLink } from '@angular/router';
 })
 export class UserListComponent implements OnInit {
 
-  users: any[] = [];
+  users: User[] = [];
   errors: any = null;
   isLoading: boolean = false;
 
@@ -24,8 +25,8 @@ export class UserListComponent implements OnInit {
     this.isLoading = true;
 
     this.userService.getUsers().subscribe({
-      next: data => {
-        this.users = data['hydra:member'];
+      next: (data: User[]) => {
+        this.users = data;
         this.isLoading = false;
       },
       error: err => {

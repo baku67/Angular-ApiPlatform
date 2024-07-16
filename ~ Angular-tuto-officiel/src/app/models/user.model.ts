@@ -19,8 +19,8 @@ export class User {
       this.password = data.password;
       this.roles = data.roles;
       this.projects_owned = data.projects_owned;
-      this.imgUrl = data.string;
+      this.imgUrl = data.imgUrl;
       this.projects_member = data.projects_member;
-      this.tasks_assignated = data.tasks_assigned
+      this.tasks_assignated = data.tasks_assignated
     }
   }

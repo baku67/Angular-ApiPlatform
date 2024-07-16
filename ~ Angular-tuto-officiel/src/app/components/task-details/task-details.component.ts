@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { TaskService } from '../../services/task.service';
+import { Task } from '../../models/task.model';
 
 @Component({
   selector: 'app-task-details',
@@ -12,7 +13,7 @@ import { TaskService } from '../../services/task.service';
 })
 export class TaskDetailsComponent implements OnInit {
 
-  task: any = null;
+  task: Task | null = null;
   errors: any = null;
   isLoading: boolean = false; 
 

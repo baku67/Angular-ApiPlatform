@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProjectService } from '../../services/project.service';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { Project } from '../../models/project.model';
 
 @Component({
   selector: 'app-project-list',
@@ -13,7 +14,7 @@ import { RouterLink } from '@angular/router';
 
 export class ProjectListComponent implements OnInit { 
 
-  projects: any[] = [];
+  projects: Project[] = [];
   errors: any = null;
   isLoading: boolean = false; 
 
@@ -35,10 +36,11 @@ export class ProjectListComponent implements OnInit {
     this.isLoading = true; 
     this.projectService.getProjects().subscribe({
       next: data => {
-        this.projects = data['hydra:member'];
+        this.projects = data;
         this.isLoading = false;
       },
       error: err => {
+        this.errors = err;
         console.error('Error fetching projects:', err);
         this.isLoading = false; 
       }

@@ -1,7 +1,7 @@
 <div *ngIf="user">
 
-    <h2>{{user?.username}}</h2>
-    <img class="userPic" [src]="user?.imgUrl" />
+    <h2>{{user.username}}</h2>
+    <img class="userPic" [src]="user.imgUrl" />
 
     <h3>Projets managés</h3>
     <div *ngIf="user && user.projects_owned && user.projects_owned.length > 0">

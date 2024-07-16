@@ -3,6 +3,8 @@ import { Task } from "./task.model";
 
 
 export class Project {
+
+    id: number;
     project_name: string;
     tasks: Task[];
     description: string;
@@ -13,6 +15,7 @@ export class Project {
     members: User[];
 
     constructor(data:any) {
+        this.id = data.id;
         this.project_name = data.project_name;
         this.tasks = data.tasks;
         this.description = data.description;

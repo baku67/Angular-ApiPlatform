@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProjectService } from '../../services/project.service';
 import { CommonModule, DatePipe } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { Project } from '../../models/project.model';
 
 
 @Component({
@@ -15,7 +16,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 
 export class ProjectDetailsComponent implements OnInit {
 
-  project: any = null;
+  project: Project | null = null;
   errors: any = null;
   isLoading: boolean = false; 
 

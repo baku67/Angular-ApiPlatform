@@ -3,6 +3,7 @@ import { UserService } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { RouterLink } from '@angular/router';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-user-details',
@@ -13,7 +14,7 @@ import { RouterLink } from '@angular/router';
 })
 export class UserDetailsComponent implements OnInit {
 
-  user: any = null;
+  user: User | null = null;
   errors: any = null;
   isLoading: boolean = false; // Déclaration de la variable isLoading
 

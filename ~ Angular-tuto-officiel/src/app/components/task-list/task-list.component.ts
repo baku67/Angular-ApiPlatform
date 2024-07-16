@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TaskService } from '../../services/task.service';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { Task } from '../../models/task.model';
 
 @Component({
   selector: 'app-task-list',
@@ -12,7 +13,7 @@ import { RouterLink } from '@angular/router';
 })
 export class TaskListComponent implements OnInit {
 
-  tasks: any[] = [];
+  tasks: Task[] = [];
   errors: any = null;
   isLoading: boolean = false; 
 
@@ -24,8 +25,8 @@ export class TaskListComponent implements OnInit {
     this.isLoading = true;
 
     this.taskService.getTasks().subscribe({
-      next: data => {
-        this.tasks = data['hydra:member'];
+      next: (data: Task[]) => {
+        this.tasks = data;
         this.isLoading = false;
       },
       error: err => {

@@ -4,13 +4,15 @@ import { User } from "./user.model";
 
 export class Task {
 
-    task_name:string;
-    task_description:string;
+    id: number;
+    task_name: string;
+    task_description: string;
     project: Project;
-    status:string;
+    status: string;
     assignated_members: User[];
 
     constructor(data:any) {
+      this.id = data.id;
       this.task_name = data.task_name;
       this.task_description = data.task_description;
       this.project = data.project;
