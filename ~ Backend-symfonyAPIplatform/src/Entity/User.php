@@ -53,7 +53,7 @@ class User
     private Collection $projects_owned;
 
     #[ORM\Column(length: 255, nullable: true)]
-    #[Groups(['user:read', 'user:write'])]
+    #[Groups(['user:read', 'user:write', 'project:read'])]
     private ?string $imgUrl = null;
 
     /**

@@ -26,7 +26,7 @@ class ProjectFixtures extends Fixture implements DependentFixtureInterface
 
         // Load users from references created in UserFixtures
         $users = [];
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 8; $i++) {
             $users[] = $this->getReference('user_' . $i);
         }
 
@@ -47,7 +47,7 @@ class ProjectFixtures extends Fixture implements DependentFixtureInterface
             $project->addMember($randomUser);
 
             // Add multiple random members to the project
-            $membersCount = mt_rand(2, 4); // Randomly choose between 1 to 3 members
+            $membersCount = mt_rand(3, 8); // Randomly choose between 3 to 8 members
             $randomMembers = $this->getRandomMembers($users, $membersCount);
             foreach ($randomMembers as $member) {
                 $project->addMember($member);

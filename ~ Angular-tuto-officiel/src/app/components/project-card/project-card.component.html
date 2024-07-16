@@ -1,7 +1,19 @@
+
 <a [routerLink]="['/projects', project.id]">
+
     <span>{{ project.project_name }}</span>
-    <div>
-    <span class="alignItems">{{ project.tasks.length }} <span class="material-icons">task</span></span> 
-    <span class="alignItems">{{ project.members.length }} <span class="material-icons">people</span></span> 
+
+    <div class="right-container">
+        <span class="alignItems">{{ project.tasks.length }} <span class="material-icons">task</span></span> 
+        
+        <!-- Affichage du Chef de projet et des membres  -->
+        <div>
+            <img src="{{ project.owner.imgUrl }}" class="imgUserTiny" alt="dzedzed" />
+            <ng-container *ngFor="let member of project.members">
+                <img *ngIf="member.id !== project.owner.id" src="{{ member.imgUrl }}" />
+            </ng-container>
+        </div>
+
     </div>
+
 </a>

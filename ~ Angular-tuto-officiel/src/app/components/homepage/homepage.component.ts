@@ -8,11 +8,15 @@ import { Task } from '../../models/task.model';
 import { ProjectService } from '../../services/project.service';
 import { TaskService } from '../../services/task.service';
 import { UserService } from '../../services/user.service';
+import { UserCardComponent } from '../user-card/user-card.component';
+import { ProjectCardComponent } from '../project-card/project-card.component';
+import { TaskCardComponent } from '../task-card/task-card.component';
+
 
 @Component({
   selector: 'app-homepage',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, UserCardComponent, ProjectCardComponent, TaskCardComponent],
   templateUrl: './homepage.component.html',
   styleUrl: './homepage.component.scss'
 })

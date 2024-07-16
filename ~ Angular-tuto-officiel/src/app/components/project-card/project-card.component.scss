@@ -1,12 +1,15 @@
 a {
+    
     text-decoration: none;
     height: fit-content;
     display: block;
     color: black;
     padding: 7px 12px 9px 9px;
     background-color: lightcyan;
-    border-radius: 4px;
-    border-left: 6px solid var(--secondary-color);
+    border-radius: 2px;
+    border-left: 6px solid var(--primary-color);
+
+    margin: 1px auto;
 
     display: inline-flex;
     width: 100%;
@@ -17,13 +20,23 @@ a {
 a:hover {
     background-color: rgb(197, 240, 240);
 }
+
+.right-container {
+    gap: 20px !important;
+}
+
 a div {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    
+    gap: 0px;
+
+    position: relative;
 }
 a div img {
     border-radius: 50px;
-    width: 50px;
+    width: 26px;
+    margin: 0px 0 0 -10px;
+    border: 3px solid white;
 }
+
+

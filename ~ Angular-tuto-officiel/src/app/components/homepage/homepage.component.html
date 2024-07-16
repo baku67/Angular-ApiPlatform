@@ -3,7 +3,7 @@
     <h2>Projects</h2>
 
     <div *ngFor="let project of projects">
-        <span>{{ project.project_name }}</span>
+        <app-project-card [project]="project"></app-project-card>
     </div>
     <em>Voir plus</em>
 </div>
@@ -14,7 +14,7 @@
     <h2>Utilisateurs</h2>
 
     <div *ngFor="let user of users">
-        <span>{{ user.username }}</span>
+        <app-user-card [user]="user"></app-user-card>
     </div>
     <em>Voir plus</em>
 </div>
@@ -25,9 +25,9 @@
     <h2>Tâches</h2>
 
     <div *ngFor="let task of tasks">
-        <span>{{ task.task_name }}</span>
+        <app-task-card [task]="task"></app-task-card>
     </div>
-    <em>Voir plus</em>
+    <a><em>Voir plus</em></a>
 </div>
 
 
