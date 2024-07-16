@@ -32,7 +32,7 @@ class ProjectFixtures extends Fixture implements DependentFixtureInterface
 
         $statuses = ['planning', 'in_progress', 'completed', 'on_hold', 'cancelled'];
 
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 8; $i++) {
             $project = new Project();
             $project->setProjectName($faker->company);
             $project->setDescription($faker->paragraph);

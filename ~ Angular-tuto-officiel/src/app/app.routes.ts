@@ -5,8 +5,11 @@ import { UserListComponent } from './components/user-list/user-list.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
 import { TaskListComponent } from './components/task-list/task-list.component';
 import { TaskDetailsComponent } from './components/task-details/task-details.component';
+import { HomepageComponent } from './components/homepage/homepage.component';
 
 export const routes: Routes = [
+    { path: '', component: HomepageComponent },
+    { path: 'home', component: HomepageComponent },
     { path: 'projects', component: ProjectListComponent },
     { path: 'projects/:id', component: ProjectDetailsComponent },
     { path: 'users', component: UserListComponent },

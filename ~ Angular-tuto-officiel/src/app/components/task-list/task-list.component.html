@@ -5,12 +5,7 @@
   <ul>
     <li *ngFor="let task of tasks">
 
-      <a [routerLink]="['/tasks', task.id]">
-        <div>
-            <!-- <img [src]="task.imgUrl" /> -->
-            <span>{{ task.task_name }}</span>
-        </div>
-      </a>
+      <app-task-card [task]="task"></app-task-card>
 
     </li> 
   </ul>

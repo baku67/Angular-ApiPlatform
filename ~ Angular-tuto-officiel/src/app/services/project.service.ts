@@ -13,10 +13,16 @@ export class ProjectService {
 
   constructor(private http: HttpClient) { }
 
-  getProjects(): Observable<Project[]> {
-    return this.http.get<any>(this.apiUrl).pipe(
+  getProjects(pagination:boolean, itemsPerPage:number): Observable<Project[]> {
+    const params = { 'pagination': pagination, 'itemsPerPage': itemsPerPage }; // Paramètres de pagination
+    return this.http.get<any>(this.apiUrl, { params }).pipe(
       map(data => {
+        if (data && Array.isArray(data['hydra:member'])) {
           return data['hydra:member'].map((item: any) => new Project(item));
+        } else {
+          console.error('Expected an array but got:', data);
+          return [];
+        }
       })
     );
   }

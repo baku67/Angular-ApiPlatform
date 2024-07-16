@@ -3,11 +3,12 @@ import { UserService } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { User } from '../../models/user.model';
+import { UserCardComponent } from '../user-card/user-card.component';
 
 @Component({
   selector: 'app-user-list',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, UserCardComponent],
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.scss'
 })

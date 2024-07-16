@@ -1,0 +1,7 @@
+<a [routerLink]="['/projects', project.id]">
+    <span>{{ project.project_name }}</span>
+    <div>
+    <span class="alignItems">{{ project.tasks.length }} <span class="material-icons">task</span></span> 
+    <span class="alignItems">{{ project.members.length }} <span class="material-icons">people</span></span> 
+    </div>
+</a>
