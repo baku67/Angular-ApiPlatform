@@ -7,7 +7,7 @@ export class Task {
     id: number;
     task_name: string;
     task_description: string;
-    project: Project;
+    project: Project | string;
     status: string;
     assignated_members: User[];
 

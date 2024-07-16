@@ -1,21 +1,73 @@
-<h2>Tâches globales</h2>
+<div>
 
+  <h2>Tâches globales</h2>
 
-<div class="list-container" *ngIf="tasks && tasks.length > 0">
-  <ul>
-    <li *ngFor="let task of tasks">
+  <button (click)="toggleForm()" mat-flat-button>
+    <mat-icon>{{formToggleBtnIcon}}</mat-icon>
+    {{formToggleBtnText}}
+  </button>
 
-      <app-task-card [task]="task"></app-task-card>
-
-    </li> 
-  </ul>
 </div>
 
-<div *ngIf="errors">
-  <h2>ERREUR</h2>
-  <p>Description: Erreur {{errors.error.status}}: "{{errors.error.detail}}"</p>
+<div *ngIf="!isFormToggled; else elseBlock">
+
+  <div class="list-container" *ngIf="tasks && tasks.length > 0">
+    <ul>
+      <li *ngFor="let task of tasks">
+
+        <app-task-card [task]="task"></app-task-card>
+
+      </li> 
+    </ul>
+  </div>
+
+  <div *ngIf="errors">
+    <h2>ERREUR</h2>
+    <p>Description: Erreur {{errors.error.status}}: "{{errors.error.detail}}"</p>
+  </div>
+
+  <div *ngIf="isLoading">
+    <p>Chargement en cours...</p>
+  </div>
+
 </div>
 
-<div *ngIf="isLoading">
-  <p>Chargement en cours...</p>
-</div>
+
+
+
+
+<ng-template #elseBlock>
+
+  <h4>Nouvelle tâche</h4>
+
+  <form (ngSubmit)="onSubmit(myForm)" #myForm="ngForm" class="formNewItem">
+
+    <mat-form-field>
+      <mat-label>Nom de la tâche</mat-label>
+      <input matInput required name="task_name" ngModel>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <textarea matInput name="task_description" ngModel></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Projet associé</mat-label>
+      <mat-select name="project" ngModel>
+        <mat-option *ngFor="let project of projects" [value]="project.id">
+          {{ project.project_name }}
+          <!-- <app-project-card [project]="project"></app-project-card> -->
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button type="submit" mat-fab extended>
+      <mat-icon>check</mat-icon>
+      Valider
+    </button>
+
+  </form>
+
+
+</ng-template>

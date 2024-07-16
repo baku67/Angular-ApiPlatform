@@ -1,0 +1,4 @@
+.formNewItem {
+    display: inline-flex;
+    flex-direction: column;
+}

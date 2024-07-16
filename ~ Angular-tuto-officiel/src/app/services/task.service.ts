@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Task } from '../models/task.model';
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -36,8 +37,11 @@ export class TaskService {
     );
   }
 
+  private headers = new HttpHeaders({
+    'Content-Type': 'application/ld+json'
+  });
   createTask(task: Task): Observable<Task> {
-    return this.http.post<any>(this.apiUrl, task).pipe(
+    return this.http.post<any>(this.apiUrl, task, {headers: this.headers}).pipe(
       map(data => new Task(data))
     );
   }
