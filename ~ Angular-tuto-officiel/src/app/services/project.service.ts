@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs';
 import { Project } from '../models/project.model';
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +32,16 @@ export class ProjectService {
 
   getProject(projectId: any): Observable<Project> {
     return this.http.get<any>(`${this.apiUrl}/${projectId}`).pipe(
+      map(data => new Project(data))
+    );
+  }
+
+  
+  private headers = new HttpHeaders({
+    'Content-Type': 'application/ld+json'
+  });
+  createProject(project: Project): Observable<Project> {
+    return this.http.post<any>(this.apiUrl, project, {headers: this.headers} ).pipe(
       map(data => new Project(data))
     );
   }

@@ -1,7 +1,13 @@
 
 <div>
+
   <h2>Projets</h2>
-  <button (click)="toggleForm()">{{formBtnText}}</button>
+
+  <button (click)="toggleForm()" mat-flat-button>
+    <mat-icon>{{formToggleBtnIcon}}</mat-icon>
+    {{formToggleBtnText}}
+  </button>
+
 </div>
 
 
@@ -30,7 +36,36 @@
 
 
 <ng-template #elseBlock>
-  <p>Formulaire création Projet</p>
+
+  <h4>Nouveau projet</h4>
+
+  <form (ngSubmit)="onSubmit(myForm)" #myForm="ngForm" class="formNewItem">
+
+    <mat-form-field>
+      <mat-label>Nom du projet</mat-label>
+      <input matInput required name="project_name" ngModel>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Description du projet</mat-label>
+      <textarea matInput name="description" ngModel></textarea>
+    </mat-form-field>
+
+    <!-- <mat-form-field>
+      <mat-label>Chef de projet</mat-label>
+      <mat-select name="owner" ngModel>
+        <mat-option value="one">First option</mat-option>
+        <mat-option value="two">Second option</mat-option>
+      </mat-select>
+    </mat-form-field> -->
+
+    <button type="submit" mat-fab extended>
+      <mat-icon>check</mat-icon>
+      Valider
+    </button>
+
+  </form>
+
 </ng-template>
 
 

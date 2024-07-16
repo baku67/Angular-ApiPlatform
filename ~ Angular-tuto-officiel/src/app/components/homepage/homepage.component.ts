@@ -12,6 +12,8 @@ import { UserCardComponent } from '../user-card/user-card.component';
 import { ProjectCardComponent } from '../project-card/project-card.component';
 import { TaskCardComponent } from '../task-card/task-card.component';
 
+// import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+
 
 @Component({
   selector: 'app-homepage',
