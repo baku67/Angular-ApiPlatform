@@ -1,8 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ProjectService } from '../../services/project.service';
+import { UserService } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Project } from '../../models/project.model';
+import { User } from '../../models/user.model';
 import { ProjectCardComponent } from '../project-card/project-card.component';
 
 import { FormsModule } from '@angular/forms';
@@ -32,12 +34,17 @@ export class ProjectListComponent implements OnInit {
   errors: any = null;
   isLoading: boolean = false; 
 
+  users: User[] = [];
+
   isFormToggled: boolean = false;
   formToggleBtnIcon: string = "add";
   formToggleBtnText: string = "Nouveau";
 
 
-  constructor(private projectService: ProjectService) { }
+  constructor(
+    private projectService: ProjectService,
+    private userService: UserService,
+  ) { }
 
   
   public toggleForm() {
@@ -54,7 +61,9 @@ export class ProjectListComponent implements OnInit {
 
 
   ngOnInit(): void {
+
     this.isLoading = true; 
+
     this.projectService.getProjects(true, 10).subscribe({
       next: data => {
         this.projects = data;
@@ -66,12 +75,26 @@ export class ProjectListComponent implements OnInit {
         this.isLoading = false; 
       }
     });
+
+
+    this.userService.getUsers(true, 30).subscribe({
+      next: (data: User[]) => {
+        this.users = data;
+      },
+      error: err => {
+        console.error('Error fetching projects:', err);
+      }
+      
+    });
+
+
   }
 
 
   onSubmit(form: NgForm) {
     const formData = form.value;
     const project = new Project(formData); 
+    project.status = "pending";
     project.start_date = new Date();
     project.end_date = new Date();
     console.log("NOUVEAU PROJET: " + JSON.stringify(project));

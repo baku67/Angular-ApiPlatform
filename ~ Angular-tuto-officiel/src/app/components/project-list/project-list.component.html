@@ -51,13 +51,17 @@
       <textarea matInput name="description" ngModel></textarea>
     </mat-form-field>
 
-    <!-- <mat-form-field>
+    <mat-form-field>
       <mat-label>Chef de projet</mat-label>
       <mat-select name="owner" ngModel>
-        <mat-option value="one">First option</mat-option>
-        <mat-option value="two">Second option</mat-option>
+        <mat-option *ngFor="let user of users" [value]="user.id">
+          <div>
+            <img src="{{ user.imgUrl}}" />
+            <span>{{ user.username }}</span>
+          </div>
+        </mat-option>
       </mat-select>
-    </mat-form-field> -->
+    </mat-form-field>
 
     <button type="submit" mat-fab extended>
       <mat-icon>check</mat-icon>
