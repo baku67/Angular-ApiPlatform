@@ -3,12 +3,13 @@ import { ProjectService } from '../../services/project.service';
 import { CommonModule, DatePipe } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Project } from '../../models/project.model';
+import { UserCardComponent } from '../user-card/user-card.component';
 
 
 @Component({
   selector: 'app-project-details',
   standalone: true,
-  imports: [CommonModule, RouterLink, DatePipe],
+  imports: [CommonModule, RouterLink, DatePipe, UserCardComponent],
   templateUrl: './project-details.component.html',
   styleUrl: './project-details.component.css'
 })

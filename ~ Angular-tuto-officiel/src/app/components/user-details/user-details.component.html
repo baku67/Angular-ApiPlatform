@@ -6,9 +6,9 @@
     <h3>Projets managés</h3>
     <div *ngIf="user && user.projects_owned && user.projects_owned.length > 0">
         <div *ngFor="let project of user.projects_owned">
-            <a [routerLink]="['/projects', project.id]">
-                <p>Porjet "{{project.project_name}}"</p>
-            </a>
+
+            <app-project-card [project]="project"></app-project-card>
+            
         </div>
     </div>
 

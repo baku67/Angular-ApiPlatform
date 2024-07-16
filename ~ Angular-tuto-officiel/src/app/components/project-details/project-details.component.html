@@ -1,17 +1,12 @@
 
-<!-- project owner -->
-
-<!-- ngFor User[] members (todo liaison ManyToMany ?)-->
-
-<!-- nogFor tasks -->
-
 
 <div *ngIf="project">
 
       <h2>Projet #{{project.id}}: {{project.project_name}} </h2>
       <p>Description: {{project.description}}</p>
       <p>Initié le {{project.start_date | date }}</p>
-      <span>Chef de projet: </span><a [routerLink]="['/users/', project.owner.id]">{{project.owner.username}}</a>
+      <span>Chef de projet: </span>
+      <app-user-card [user]="project.owner"></app-user-card>
 
       <h3>Membres:</h3>
 
