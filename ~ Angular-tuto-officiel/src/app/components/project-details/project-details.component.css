@@ -1,0 +1,14 @@
+.memberCard-row {
+    display: inline-flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+app-user-card {
+    flex: 1;
+}
+
+
+.removeMemberBtn {
+    
+}

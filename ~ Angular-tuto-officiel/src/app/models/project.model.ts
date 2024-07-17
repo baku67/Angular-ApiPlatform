@@ -26,4 +26,9 @@ export class Project {
         this.members = data.members;
     }
 
+
+    // removeMember(id: number): void {
+        
+    // }
+
 }

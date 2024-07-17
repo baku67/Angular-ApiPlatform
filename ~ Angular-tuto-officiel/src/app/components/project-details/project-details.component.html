@@ -19,8 +19,9 @@
                   </mat-expansion-panel-header>
 
                   <div>
-                        <div *ngFor="let member of project.members">
+                        <div class="memberCard-row" *ngFor="let member of project.members">
                               <app-user-card [user]="member"></app-user-card>
+                              <button class="removeMemberBtn" (click)="removeMember(member.id)">remove</button>
                         </div>
                   </div>
             </mat-expansion-panel>

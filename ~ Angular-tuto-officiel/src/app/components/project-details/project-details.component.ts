@@ -64,6 +64,25 @@ export class ProjectDetailsComponent implements OnInit {
   }
 
 
+  removeMember(id: number): void {
+    if (!this.project) return;
+
+    // Create a copy of the project object
+    const updatedProject = { ...this.project, members: this.project.members.filter(member => member.id !== id) };
+
+    // Update the project on the server
+    this.projectService.updateProject(updatedProject.id, updatedProject).subscribe({
+      next: data => {
+        this.project = data;
+        console.log('Updated project:', JSON.stringify(this.project));
+      },
+      error: err => {
+        console.error('Error updating project:', err);
+      }
+    });
+  }
+
+
 
   readonly panelOpenState = signal(false);
 

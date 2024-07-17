@@ -1,0 +1,17 @@
+<p>diagram works!</p>
+<button (click)="consoloLog()">logs</button>
+
+<!-- <ejs-diagram id="diagram" width="100%" height="580px" mode="SVG">
+    <e-nodes>
+        <e-node id='node1' [height]=60 [width]=100 [offsetX]=300 [offsetY]=80 >
+            <e-node-annotations>
+                <e-node-annotation content='Start'></e-node-annotation>
+            </e-node-annotations>
+        </e-node>
+    </e-nodes>
+  </ejs-diagram> -->
+
+
+
+  <ejs-diagram id="diagram" width="100%" height="580px" [nodes]="nodes">
+  </ejs-diagram>

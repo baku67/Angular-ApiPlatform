@@ -46,4 +46,14 @@ export class ProjectService {
       map(data => new Project(data))
     );
   }
+
+
+  updateProject(id: number, project: Project): Observable<Project> {
+    // Convert Task objects to their IRIs
+    const projectWithIRIs = {
+      ...project,
+      tasks: project.tasks.map(task => `/api/tasks/${task.id}`)
+    };
+    return this.http.put<Project>(`${this.apiUrl}/${id}`, projectWithIRIs, {headers: this.headers});
+  }
 } 

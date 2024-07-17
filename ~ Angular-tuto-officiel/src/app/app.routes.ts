@@ -6,6 +6,7 @@ import { UserDetailsComponent } from './components/user-details/user-details.com
 import { TaskListComponent } from './components/task-list/task-list.component';
 import { TaskDetailsComponent } from './components/task-details/task-details.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
+import { DiagramUiComponent } from './components/diagram/diagram.component';
 
 export const routes: Routes = [
     { path: '', component: HomepageComponent },
@@ -18,4 +19,5 @@ export const routes: Routes = [
     { path: 'tasks/:id', component: TaskDetailsComponent },
     // { path: '', redirectTo: '/projects', pathMatch: 'full' },
     // { path: '**', redirectTo: '/projects' }
+    { path: 'digram', component: DiagramUiComponent}
 ];
