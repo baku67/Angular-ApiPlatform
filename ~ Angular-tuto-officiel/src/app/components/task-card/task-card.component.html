@@ -1,5 +1,6 @@
 <a [routerLink]="['/tasks', task.id]">
-    <div>
+    <div class="card-div">
         <span>{{ task.task_name }}</span>
+        <span style="color: {{ statusColor }}">{{ task.status }}</span>
     </div>
 </a>

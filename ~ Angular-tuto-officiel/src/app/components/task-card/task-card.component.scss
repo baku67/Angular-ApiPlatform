@@ -3,7 +3,7 @@ a {
     height: fit-content;
     display: block;
     color: black;
-    padding: 5px 4px 4px 9px;
+    padding: 4px 8px 5px 9px;
     background-color: lightcyan;
     border-radius: 2px;
     border-left: 6px solid purple;
@@ -19,7 +19,7 @@ a {
 a:hover {
     background-color: rgb(197, 240, 240);
     border-left: 11px solid purple;
-    padding: 5px 4px 4px 16px;
+    padding: 4px 8px 5px 16px;
 }
 a div {
     display: inline-flex;
@@ -32,3 +32,10 @@ a div img {
     width: 50px;
 }
 
+
+
+.card-div {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
