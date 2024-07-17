@@ -2,3 +2,9 @@
     display: inline-flex;
     flex-direction: column;
 }
+
+
+ul {
+    list-style-type: none;
+    padding-inline-start: 0;
+}

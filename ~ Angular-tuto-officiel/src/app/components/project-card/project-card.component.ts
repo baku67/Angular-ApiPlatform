@@ -17,7 +17,7 @@ export class ProjectCardComponent {
     project_name: string,
     tasks: Task[],
     description: string,
-    owner: User,
+    owner: User | null,
     start_date: Date,
     end_date: Date,
     status: string,

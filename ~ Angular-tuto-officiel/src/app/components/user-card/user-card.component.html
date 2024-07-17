@@ -3,8 +3,8 @@
         <img [src]="user.imgUrl" />
         <span>{{ user.username }}</span>
     </div>
-    <div>
-        <span>{{ user.projects_member.length }} <span class="material-icons">diversity_3</span></span>
-        <span>{{ user.tasks_assignated.length }} <span class="material-icons">task</span></span>
+    <div >
+        <span *ngIf="user.projects_member">{{ user.projects_member.length }} <span class="material-icons">diversity_3</span></span>
+        <span *ngIf="user.tasks_assignated">{{ user.tasks_assignated.length }} <span class="material-icons">task</span></span>
     </div>
 </a>

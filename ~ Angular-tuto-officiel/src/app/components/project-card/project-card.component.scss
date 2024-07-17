@@ -4,7 +4,7 @@ a {
     height: fit-content;
     display: block;
     color: black;
-    padding: 7px 12px 9px 9px;
+    padding: 9px 12px 5px 9px;
     background-color: lightcyan;
     border-radius: 2px;
     border-left: 6px solid var(--primary-color);
@@ -19,6 +19,9 @@ a {
 }
 a:hover {
     background-color: rgb(197, 240, 240);
+
+    border-left: 10px solid var(--primary-color);
+    padding: 9px 12px 5px 15px;
 }
 
 .right-container {

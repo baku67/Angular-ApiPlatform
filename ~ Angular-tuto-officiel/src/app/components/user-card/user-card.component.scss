@@ -16,6 +16,10 @@ a {
 }
 a:hover {
     background-color: rgb(197, 240, 240);
+
+    // border-left: 11px solid var(--secondary-color);
+    // padding: 5px 4px 4px 16px;
+    transform: translateX(5px);
 }
 a div {
     display: inline-flex;

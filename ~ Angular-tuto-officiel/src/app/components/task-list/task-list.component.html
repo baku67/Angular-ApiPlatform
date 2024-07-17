@@ -54,7 +54,7 @@
 
     <mat-form-field>
       <mat-label>Projet associé</mat-label>
-      <mat-select name="project" ngModel>
+      <mat-select name="project" required ngModel>
         <mat-option *ngFor="let project of projects" [value]="project.id">
           {{ project.project_name }}
           <!-- <app-project-card [project]="project"></app-project-card> -->

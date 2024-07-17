@@ -8,6 +8,8 @@ import { Project } from '../../models/project.model';
 import { TaskCardComponent } from '../task-card/task-card.component';
 import { ProjectCardComponent } from '../project-card/project-card.component';
 
+import { Router } from '@angular/router';
+
 import { FormsModule } from '@angular/forms';
 import { NgForm } from '@angular/forms';
 
@@ -45,6 +47,7 @@ export class TaskListComponent implements OnInit {
   constructor(
     private taskService: TaskService,
     private projectService: ProjectService,
+    private router: Router,
   ) { }
 
 
@@ -74,10 +77,9 @@ export class TaskListComponent implements OnInit {
         console.error('Error fetching projects:', err);
         this.isLoading = false; 
       }
-      
     });
 
-
+    // Liste projets pour form-select ajout task
     this.projectService.getProjects(true, 30).subscribe({
       next: (data: Project[]) => {
         this.projects = data;
@@ -85,10 +87,10 @@ export class TaskListComponent implements OnInit {
       error: err => {
         console.error('Error fetching projects:', err);
       }
-      
     });
 
   }
+
 
   onSubmit(form: NgForm) {
     const formData = form.value;
@@ -96,21 +98,25 @@ export class TaskListComponent implements OnInit {
     console.log(formData.project);
     task.status = "planning";
 
-        task.project = `/api/projects/${formData.project}`;
-  
-        // Log the new task object
-        console.log("NOUVELLE TASK: " + JSON.stringify(task));
-  
-        // Send the task object to the API
-        this.taskService.createTask(task).subscribe(
-          response => {
-            console.log('Réponse de l\'API', response);
-          },
-          error => {
-            console.error('Erreur', error);
-          }
-        );
+    task.project = `/api/projects/${formData.project}`;
 
+    // Log the new task object
+    console.log("NOUVELLE TASK: " + JSON.stringify(task));
+
+    // Send the task object to the API
+    this.taskService.createTask(task).subscribe(
+      response => {
+        console.log('Réponse de l\'API', response);
+
+        // redirection nouvelle tache details:
+        // Extraire l'ID de la nouvelle tâche depuis la réponse
+        const newTaskId = response.id;
+        this.router.navigate(['/tasks', newTaskId]);
+      },
+      error => {
+        console.error('Erreur', error);
+      }
+    );
 
   }
 

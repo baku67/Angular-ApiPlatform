@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ProjectService } from '../../services/project.service';
 import { UserService } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Project } from '../../models/project.model';
 import { User } from '../../models/user.model';
 import { ProjectCardComponent } from '../project-card/project-card.component';
@@ -44,6 +44,7 @@ export class ProjectListComponent implements OnInit {
   constructor(
     private projectService: ProjectService,
     private userService: UserService,
+    private router: Router,
   ) { }
 
   
@@ -97,9 +98,17 @@ export class ProjectListComponent implements OnInit {
     project.status = "pending";
     project.start_date = new Date();
     project.end_date = new Date();
+    // Si pas de chef de projet => null:
+    if(!formData.owner) {
+      project.owner = null;
+    }
     console.log("NOUVEAU PROJET: " + JSON.stringify(project));
     this.projectService.createProject(project).subscribe(response => {
       console.log('Réponse de l\'API', response);
+        // redirection nouveau projet details:
+        // Extraire l'ID ddu nouveau projet depuis la réponse
+        const newProjectId = response.id;
+        this.router.navigate(['/projects', newProjectId]);
     }, error => {
       console.error('Erreur', error);
     });

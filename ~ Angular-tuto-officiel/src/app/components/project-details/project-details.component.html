@@ -6,11 +6,43 @@
       <p>Description: {{project.description}}</p>
       <p>Initié le {{project.start_date | date }}</p>
       <span>Chef de projet: </span>
-      <app-user-card [user]="project.owner"></app-user-card>
+      <app-user-card *ngIf="project.owner" [user]="project.owner"></app-user-card>
 
-      <h3>Membres:</h3>
 
-      <h3>Tâches:</h3>
+      <mat-divider></mat-divider>
+
+
+      <mat-accordion>
+            <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+                  <mat-expansion-panel-header>
+                        <mat-panel-title> Membres </mat-panel-title>
+                  </mat-expansion-panel-header>
+
+                  <div>
+                        <div *ngFor="let member of project.members">
+                              <app-user-card [user]="member"></app-user-card>
+                        </div>
+                  </div>
+            </mat-expansion-panel>
+      </mat-accordion>
+
+      
+
+
+
+      <mat-accordion>
+            <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+                  <mat-expansion-panel-header>
+                        <mat-panel-title> Tâches </mat-panel-title>
+                  </mat-expansion-panel-header>
+
+                  <div>
+                        <div *ngFor="let task of project.tasks">
+                              <app-task-card [task]="task"></app-task-card>
+                        </div>
+                  </div>
+            </mat-expansion-panel>
+      </mat-accordion>
 
 
 </div>
