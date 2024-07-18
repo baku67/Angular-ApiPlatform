@@ -19,5 +19,5 @@ export const routes: Routes = [
     { path: 'tasks/:id', component: TaskDetailsComponent },
     // { path: '', redirectTo: '/projects', pathMatch: 'full' },
     // { path: '**', redirectTo: '/projects' }
-    { path: 'digram', component: DiagramUiComponent}
+    { path: 'diagram', component: DiagramUiComponent}
 ];
