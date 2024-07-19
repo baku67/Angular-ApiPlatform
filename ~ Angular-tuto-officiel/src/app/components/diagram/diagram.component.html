@@ -1,7 +1,34 @@
 <p>diagram works!</p>
 
 <button (click)="saveDiag()">Save</button>
-<!-- <button (click)="loadDiag()">Load</button> -->
+
+<br>
+
+<button (click)="loadDiag()">Reset(load)</button>
+<button (click)="undo()">Undo</button>
+<button (click)="redo()">Redo</button>
+
+<br>
+
+<button (click)="group()">Group</button>
+
+<br>
+
+<button (click)="bringForwards()">bringForwards</button>
+<button (click)="bringBackwards()">bringBackwards</button>
+
+<button (click)="moveForwards()">moveForwards</button>
+<button (click)="moveBackwards()">moveBackwards</button>
+
+<br>
+
+<button (click)="zoomIn()">+</button>
+<button (click)="zoomOut()">-</button>
+
+<br>
+
+<button (click)="fitToPage()">fitToPage</button>
+
 
 
   <ejs-diagram #diagram width="100%" height="580px">

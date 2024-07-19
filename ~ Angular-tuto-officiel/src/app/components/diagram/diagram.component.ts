@@ -1,10 +1,11 @@
 import { Component, ViewEncapsulation, ViewChild, AfterViewInit, AfterViewChecked } from "@angular/core";
-import { DiagramComponent, DiagramModule } from '@syncfusion/ej2-angular-diagrams'
+import { DiagramComponent, DiagramModule, UndoRedoService } from '@syncfusion/ej2-angular-diagrams'
 
 @Component({
   selector: 'app-diagram',
   standalone: true,
   imports: [ DiagramModule ],
+  providers: [UndoRedoService],
   templateUrl: './diagram.component.html',
   styleUrl: './diagram.component.scss'
 })
@@ -41,17 +42,79 @@ export class DiagramUiComponent implements AfterViewInit, AfterViewChecked {
 
 
 
-  public saveDiag() {
+  public saveDiag():void {
     this.diagramData = this.diagramObj?.saveDiagram();
     console.log("Saved diagram string: " + this.diagramData)
   }
 
-
-  public loadDiag() {
+  public loadDiag():void {
     try {
       this.diagramObj.loadDiagram(this.diagramDataTest);
     } catch (error) {
       console.error("Error loading diagram: ", error);
     }
   }
+
+
+
+  public undo():void {
+    this.diagramObj.undo();
+  }
+
+  public redo():void {
+    this.diagramObj.redo();
+  }
+
+
+  // https://ej2.syncfusion.com/angular/documentation/diagram/commands
+  public group(): void {
+    (this.diagramObj as DiagramComponent).group();
+  }
+
+
+
+  public bringForwards(): void {
+    (this.diagramObj as DiagramComponent).bringToFront();
+  }
+  public bringBackwards(): void {
+    (this.diagramObj as DiagramComponent).sendToBack();
+  }
+
+  public moveForwards(): void {
+    (this.diagramObj as DiagramComponent).moveForward();
+  }
+  public moveBackwards(): void {
+    (this.diagramObj as DiagramComponent).sendBackward();
+  }
+
+
+
+  public zoomIn():void {
+    this.diagramObj.zoom(1.1, {
+      x: 0,
+      y: 0
+    });
+  }
+  public zoomOut():void {
+    this.diagramObj.zoom(0.9, {
+      x: 0,
+      y: 0
+    });
+  }
+
+
+
+  public fitToPage(): void {
+    this.diagramObj.fitToPage({
+      mode: 'Page',
+      region: 'Content',
+      margin: {
+          bottom: 50
+      },
+      canZoomIn: false
+      // canZoomIn: true
+  });
+  }
+
+
 }
