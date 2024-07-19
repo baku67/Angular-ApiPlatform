@@ -7,6 +7,20 @@ import { SymbolPaletteComponent, SymbolPalette, NodeModel, ConnectorModel, Palet
 import { ExpandMode } from '@syncfusion/ej2-navigations';
 
 
+// Trad:
+// import { L10n, setCulture } from '@syncfusion/ej2-base';
+// setCulture('fr-FR');
+// L10n.load({
+//     'fr-FR': {
+//         'diagram-palet': {
+//             "Connectors": "Connecteurs",
+//         },
+//     }
+// });
+
+
+
+
 @Component({
   selector: 'app-diagram-palet',
   standalone: true,
@@ -35,25 +49,105 @@ export class DiagramPaletComponent implements OnInit {
                 }
             },
             {
-                id: 'Hexagon',
+                id: 'Triangle',
                 shape: {
                     type: 'Basic',
-                    shape: 'Hexagon'
+                    shape: 'Triangle'
                 }
-            }
+            },
+            {
+              id: 'Plus',
+              shape: {
+                  type: 'Basic',
+                  shape: 'Plus'
+              }
+            },
+            {
+              id: 'Star',
+              shape: {
+                  type: 'Basic',
+                  shape: 'Star'
+              }
+            },
+            {
+              id: 'Pentagon',
+              shape: {
+                  type: 'Basic',
+                  shape: 'Pentagon'
+              }
+            },
+            {
+              id: 'Heptagon',
+              shape: {
+                  type: 'Basic',
+                  shape: 'Heptagon'
+              }
+            },
+            {
+              id: 'Octagon',
+              shape: {
+                  type: 'Basic',
+                  shape: 'Octagon'
+              }
+            },
+            {
+              id: 'Ellipse',
+              shape: {
+                  type: 'Basic',
+                  shape: 'Ellipse'
+              }
+            },
+            {
+              id: 'Trapezoid',
+              shape: {
+                  type: 'Basic',
+                  shape: 'Trapezoid'
+              }
+            },
+            {
+              id: 'Decagon',
+              shape: {
+                  type: 'Basic',
+                  shape: 'Decagon'
+              }
+            },
+            {
+              id: 'Parallelogram',
+              shape: {
+                  type: 'Basic',
+                  shape: 'Parallelogram'
+              }
+            },
+
+
+        
         ];
         return basicShapes;
     };
     public getFlowShapes(): NodeModel[] {
         let flowShapes: NodeModel[] = [{
-                id: 'process',
+                id: 'Terminator',
+                shape: {
+                    type: 'Flow',
+                    shape: 'Terminator'
+                }
+            },
+            {
+                id: 'Process',
                 shape: {
                     type: 'Flow',
                     shape: 'Process'
                 }
             },
             {
-                id: 'document',
+                id: 'Decision',
+                shape: {
+                    type: 'Flow',
+                    shape: 'Decision'
+                }
+            },
+            {
+                id: 'Document',
                 shape: {
                     type: 'Flow',
                     shape: 'Document'
@@ -65,7 +159,106 @@ export class DiagramPaletComponent implements OnInit {
                     type: 'Flow',
                     shape: 'PreDefinedProcess'
                 }
-            }
+            },
+            {
+                id: 'papertape',
+                shape: {
+                    type: 'Flow',
+                    shape: 'PaperTap'
+                }
+            },
+            {
+                id: 'sort',
+                shape: {
+                    type: 'Flow',
+                    shape: 'Sort'
+                }
+            },
+            {
+                id: 'multidocument',
+                shape: {
+                    type: 'Flow',
+                    shape: 'MultiDocument'
+                }
+            },
+            {
+                id: 'collate',
+                shape: {
+                    type: 'Flow',
+                    shape: 'Collate'
+                }
+            },
+            {
+                id: 'summingjunction',
+                shape: {
+                    type: 'Flow',
+                    shape: 'SummingJunction'
+                }
+            },
+            {
+                id: 'or',
+                shape: {
+                    type: 'Flow',
+                    shape: 'Or'
+                }
+            },
+            {
+                id: 'internalstorage',
+                shape: {
+                    type: 'Flow',
+                    shape: 'InternalStorage'
+                }
+            },
+            {
+                id: 'extract',
+                shape: {
+                    type: 'Flow',
+                    shape: 'Extract'
+                }
+            },
+            {
+                id: 'manualoperation',
+                shape: {
+                    type: 'Flow',
+                    shape: 'ManualOperation'
+                }
+            },
+            {
+                id: 'merge',
+                shape: {
+                    type: 'Flow',
+                    shape: 'Merge'
+                }
+            },
+            {
+                id: 'offpagereference',
+                shape: {
+                    type: 'Flow',
+                    shape: 'OffPageReference'
+                }
+            },
+            {
+                id: 'sequentialaccessstorage',
+                shape: {
+                    type: 'Flow',
+                    shape: 'SequentialAccessStorage'
+                }
+            },
+            {
+                id: 'data',
+                shape: {
+                    type: 'Flow',
+                    shape: 'Data'
+                }
+            },
+            {
+                id: 'card',
+                shape: {
+                    type: 'Flow',
+                    shape: 'Card'
+                }
+            },
+              
         ];
         return flowShapes;
     };
@@ -133,21 +326,21 @@ export class DiagramPaletComponent implements OnInit {
               //Adds the palette items to palette
               symbols: this.getFlowShapes(),
               //Sets the header text of the palette
-              title: 'Flow Shapes',
+              title: 'Formes de flux',
               iconCss: 'e-ddb-icons e-flow'
           },
           {
               id: 'basic',
               expanded: true,
               symbols: this.getBasicShapes(),
-              title: 'Basic Shapes',
+              title: 'Formes basiques',
               iconCss: 'e-ddb-icons e-basic'
           },
           {
               id: 'connectors',
               expanded: true,
               symbols: this.getConnectors(),
-              title: 'Connectors',
+              title: 'Connecteurs',
               iconCss: 'e-ddb-icons e-connector'
           }
       ]
