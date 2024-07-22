@@ -11,11 +11,13 @@ import { TaskCardComponent } from '../task-card/task-card.component';
 
 import {MatDividerModule} from '@angular/material/divider';
 
+import { DiagramUiComponent } from '../diagram/diagram.component';
+
 
 @Component({
   selector: 'app-project-details',
   standalone: true,
-  imports: [CommonModule, RouterLink, MatDividerModule, DatePipe, UserCardComponent, TaskCardComponent, MatExpansionModule],
+  imports: [CommonModule, RouterLink, MatDividerModule, DatePipe, UserCardComponent, TaskCardComponent, MatExpansionModule, DiagramUiComponent],
   templateUrl: './project-details.component.html',
   styleUrl: './project-details.component.css'
 })

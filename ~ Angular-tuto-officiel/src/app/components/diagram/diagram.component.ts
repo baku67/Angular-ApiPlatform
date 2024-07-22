@@ -92,6 +92,7 @@ export class DiagramUiComponent implements AfterViewInit, AfterViewChecked {
   public saveDiag():void {
     this.diagramData = this.diagramObj?.saveDiagram();
     console.log("Saved diagram string: " + this.diagramData)
+    // Upload du diagram BDD (diagramService)
   }
 
   public loadDiag():void {

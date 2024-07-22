@@ -11,6 +11,19 @@
 
       <mat-divider></mat-divider>
 
+      <mat-accordion>
+            <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+                  <mat-expansion-panel-header>
+                        <mat-panel-title> Diagramme </mat-panel-title>
+                  </mat-expansion-panel-header>
+
+                  <div>
+                        <!-- Ajouter l'@input project.digram et data binding -->
+                        <app-diagram></app-diagram>
+                  </div>
+            </mat-expansion-panel>
+      </mat-accordion>
+
 
       <mat-accordion>
             <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
@@ -28,8 +41,6 @@
       </mat-accordion>
 
       
-
-
 
       <mat-accordion>
             <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">

@@ -68,10 +68,17 @@ class Project
     #[MaxDepth(2)]
     private Collection $members;
 
+    /**
+     * @var Collection<int, Diagram>
+     */
+    #[ORM\OneToMany(targetEntity: Diagram::class, mappedBy: 'project')]
+    private Collection $diagram;
+
     public function __construct()
     {
         $this->tasks = new ArrayCollection();
         $this->members = new ArrayCollection();
+        $this->diagram = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -203,6 +210,36 @@ class Project
     {
         if ($this->members->removeElement($member)) {
             $member->removeProjectsMember($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Diagram>
+     */
+    public function getDiagram(): Collection
+    {
+        return $this->diagram;
+    }
+
+    public function addDiagram(Diagram $diagram): static
+    {
+        if (!$this->diagram->contains($diagram)) {
+            $this->diagram->add($diagram);
+            $diagram->setProject($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDiagram(Diagram $diagram): static
+    {
+        if ($this->diagram->removeElement($diagram)) {
+            // set the owning side to null (unless already changed)
+            if ($diagram->getProject() === $this) {
+                $diagram->setProject(null);
+            }
         }
 
         return $this;
