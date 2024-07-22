@@ -22,7 +22,7 @@
     </div>
 
 
-    <h3>Tâches assignées</h3>
+    <h3>Tâches assignées</h3>  
     <div *ngIf="user && user.tasks_assignated && user.tasks_assignated.length > 0">
         <div *ngFor="let task of user.tasks_assignated">
             <!-- <a [routerLink]="['/projects', project.id]"> -->

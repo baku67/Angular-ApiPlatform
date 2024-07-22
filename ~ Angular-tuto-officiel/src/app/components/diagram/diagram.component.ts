@@ -110,6 +110,7 @@ export class DiagramUiComponent implements AfterViewInit, AfterViewChecked {
         const parsedData = JSON.parse(this.diagram.json);
         this.diagramObj.loadDiagram(parsedData);
       }
+
     } catch (error) {
       console.error("Error loading diagram: ", error);
     }

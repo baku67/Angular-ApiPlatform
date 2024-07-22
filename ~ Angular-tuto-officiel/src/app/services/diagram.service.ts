@@ -18,6 +18,16 @@ export class DiagramService {
     'Content-Type': 'application/ld+json'
   });
 
+
+
+  createDiagram(diagram: Diagram): Observable<Diagram> {
+    console.log('NOUVEAU DIAGRAMME :' + JSON.stringify(diagram));
+    return this.http.post<any>(this.apiUrl, diagram, {headers: this.headers} ).pipe(
+      map(data => new Diagram(data))
+    );
+  }
+
+
   updateDiagram(diagram: Diagram): void {
     console.log("Updating diagram with ID: " + diagram.id); 
     console.log("DIAGRAM Service: " + JSON.stringify(diagram)); 
