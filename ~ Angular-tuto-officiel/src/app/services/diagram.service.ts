@@ -14,14 +14,23 @@ export class DiagramService {
 
   constructor(private http: HttpClient) { }
 
+  private headers = new HttpHeaders({
+    'Content-Type': 'application/ld+json'
+  });
 
-  updateDiagram(id: number, project: Diagram): Observable<Diagram> {
-    // Convert Task objects to their IRIs
-    // const projectWithIRIs = {
-    //   ...project,
-    //   tasks: project.tasks.map(task => `/api/tasks/${task.id}`)
-    // };
-    return this.http.put<Diagram>(`${this.apiUrl}/${id}`, projectWithIRIs, {headers: this.headers});
+  updateDiagram(diagram: Diagram): void {
+    console.log("Updating diagram with ID: " + diagram.id); 
+    console.log("DIAGRAM Service: " + JSON.stringify(diagram)); 
+    this.http.put<any>(`${this.apiUrl}/${diagram.id}`, diagram, { headers: this.headers }).pipe(
+      map(data => new Diagram(data))
+    ).subscribe(
+      response => {
+        console.log("Diagram updated successfully:", response);
+      },
+      error => {
+        console.error("Error updating diagram:", error);
+      }
+    );
   }
 
 }

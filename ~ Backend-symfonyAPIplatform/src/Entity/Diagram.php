@@ -24,15 +24,15 @@ class Diagram
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['diagram:read', 'diagram:read', 'project:read', 'project:write'])]
+    #[Groups(['diagram:read', 'diagram:write', 'project:read', 'project:write'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['diagram:read', 'diagram:read', 'project:read', 'project:write'])]
+    #[Groups(['diagram:read', 'diagram:write', 'project:read', 'project:write'])]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    #[Groups(['diagram:read', 'diagram:read', 'project:read', 'project:write'])]
+    #[Groups(['diagram:read', 'diagram:write', 'project:read', 'project:write'])]
     private ?string $json = null;
 
     #[ORM\OneToOne(inversedBy: 'diagram', targetEntity: Project::class)]
