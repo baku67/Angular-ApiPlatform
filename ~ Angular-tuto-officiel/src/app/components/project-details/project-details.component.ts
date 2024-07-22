@@ -42,6 +42,8 @@ export class ProjectDetailsComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     console.log(`Route ID: ${id}`); // Log the ID retrieved from the route
 
+    console.log(`DIAGRAM : ${this.project?.diagram}`)
+
     if (id) {
 
       this.isLoading = true; 

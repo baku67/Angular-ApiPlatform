@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use App\Entity\Diagram;
+
 use App\Repository\ProjectRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -69,16 +71,16 @@ class Project
     private Collection $members;
 
     /**
-     * @var Collection<int, Diagram>
+     * @var Diagram|null<int, Diagram>
      */
-    #[ORM\OneToMany(targetEntity: Diagram::class, mappedBy: 'project')]
-    private Collection $diagram;
+    #[ORM\OneToOne(targetEntity: Diagram::class, mappedBy: 'project', cascade: ['persist', 'remove'])]
+    #[Groups(['project:read', 'project:write'])]
+    private ?Diagram $diagram = null;
 
     public function __construct()
     {
         $this->tasks = new ArrayCollection();
         $this->members = new ArrayCollection();
-        $this->diagram = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -218,28 +220,19 @@ class Project
     /**
      * @return Collection<int, Diagram>
      */
-    public function getDiagram(): Collection
+    public function getDiagram(): ?Diagram
     {
         return $this->diagram;
     }
 
-    public function addDiagram(Diagram $diagram): static
-    {
-        if (!$this->diagram->contains($diagram)) {
-            $this->diagram->add($diagram);
-            $diagram->setProject($this);
-        }
 
-        return $this;
-    }
-
-    public function removeDiagram(Diagram $diagram): static
+    public function setDiagram(Diagram $diagram): self
     {
         if ($this->diagram->removeElement($diagram)) {
-            // set the owning side to null (unless already changed)
-            if ($diagram->getProject() === $this) {
-                $diagram->setProject(null);
-            }
+
+            $this->diagram = $diagram;
+
+            return $this;
         }
 
         return $this;

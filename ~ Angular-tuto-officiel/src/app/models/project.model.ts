@@ -1,5 +1,6 @@
 import { User } from "./user.model";
 import { Task } from "./task.model";
+import { Diagram } from "./diagram.model";
 
 
 export class Project {
@@ -13,6 +14,7 @@ export class Project {
     end_date: Date;
     status: string;
     members: User[];
+    diagram: Diagram
 
     constructor(data:any) {
         this.id = data.id;
@@ -24,6 +26,7 @@ export class Project {
         this.end_date = new Date(data.end_date);
         this.status = data.status;
         this.members = data.members;
+        this.diagram = data.diagram;
     }
 
 

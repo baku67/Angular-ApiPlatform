@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Project;
 use App\Repository\DiagramRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -23,18 +24,18 @@ class Diagram
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['diagram:read', 'diagram:read'])]
+    #[Groups(['diagram:read', 'diagram:read', 'project:read', 'project:write'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['diagram:read', 'diagram:read'])]
+    #[Groups(['diagram:read', 'diagram:read', 'project:read', 'project:write'])]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    #[Groups(['diagram:read', 'diagram:read'])]
+    #[Groups(['diagram:read', 'diagram:read', 'project:read', 'project:write'])]
     private ?string $json = null;
 
-    #[ORM\ManyToOne(inversedBy: 'diagram')]
+    #[ORM\OneToOne(inversedBy: 'diagram', targetEntity: Project::class)]
     private ?Project $project = null;
 
     public function getId(): ?int
