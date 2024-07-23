@@ -217,23 +217,24 @@ class Project
         return $this;
     }
 
-    /**
-     * @return Collection<int, Diagram>
-     */
+
+
     public function getDiagram(): ?Diagram
     {
         return $this->diagram;
     }
 
-
-    public function setDiagram(Diagram $diagram): self
+    public function setDiagram(?Diagram $diagram): self
     {
-        if ($this->diagram->removeElement($diagram)) {
-
-            $this->diagram = $diagram;
-
-            return $this;
+        if ($diagram === null && $this->diagram !== null) {
+            // Removing the relationship
+            $this->diagram->setProject(null);
+        } elseif ($diagram !== null && $diagram->getProject() !== $this) {
+            // Updating the owning side
+            $diagram->setProject($this);
         }
+
+        $this->diagram = $diagram;
 
         return $this;
     }

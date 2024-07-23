@@ -27,7 +27,7 @@ class Diagram
     #[Groups(['diagram:read', 'diagram:write', 'project:read', 'project:write'])]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     #[Groups(['diagram:read', 'diagram:write', 'project:read', 'project:write'])]
     private ?string $title = null;
 
