@@ -104,14 +104,10 @@ export class ProjectListComponent implements OnInit {
     project.status = "pending";
     project.start_date = new Date();
     project.end_date = new Date();
-    // Si pas de chef de projet => null:
-    if(!formData.owner) {
-      project.owner = null;
-    }
-    else {
-      project.owner = formData.owner;
-      // project.owner = `/api/users/${formData.owner.id}`; // C'est pas l'id pur qu'il faut, c'est l'IRI / @id (/api/users/xx)
-    }
+    // Chef obligatoire form
+    project.owner = formData.owner.id;
+    // project.owner = `/api/users/${formData.owner.id}`; // C'est pas l'id pur qu'il faut, c'est l'IRI / @id (/api/users/xx)
+
 
 
     // Projet bien créé:

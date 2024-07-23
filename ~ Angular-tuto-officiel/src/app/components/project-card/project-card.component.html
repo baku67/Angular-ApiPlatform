@@ -8,9 +8,9 @@
         
         <!-- Affichage du Chef de projet et des membres  -->
         <div>
-            <img src="{{ project.owner?.imgUrl }}" class="imgUserTiny" alt="dzedzed" />
+            <img src="{{ ownerObj?.imgUrl }}" class="imgUserTiny" alt="dzedzed" />
             <ng-container *ngFor="let member of project.members">
-                <img *ngIf="member.id !== project.owner?.id" src="{{ member.imgUrl }}" />
+                <img *ngIf="member.id !== ownerObj?.id" src="{{ member.imgUrl }}" /> 
             </ng-container>
         </div>
 

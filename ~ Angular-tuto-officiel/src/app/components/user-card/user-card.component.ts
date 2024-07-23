@@ -3,6 +3,7 @@ import { Project } from '../../models/project.model';
 import { Task } from '../../models/task.model';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-user-card',
@@ -13,15 +14,5 @@ import { CommonModule } from '@angular/common';
 })
 export class UserCardComponent {
 
-  @Input() user!: {
-    id: number,
-    username: string,
-    email: string,
-    password: string,
-    roles: string,
-    projects_owned: Project[],
-    imgUrl: string,
-    projects_member: Project[],
-    tasks_assignated: Task[],
-  }
+  @Input() user!: User; 
 }

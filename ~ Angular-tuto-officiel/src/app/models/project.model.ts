@@ -9,7 +9,7 @@ export class Project {
     project_name: string;
     tasks: Task[];
     description: string;
-    owner: User | null;
+    owner: User | string;
     start_date: Date;
     end_date: Date;
     status: string;

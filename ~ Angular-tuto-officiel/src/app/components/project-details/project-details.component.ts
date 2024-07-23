@@ -31,7 +31,9 @@ export class ProjectDetailsComponent implements OnInit {
   errors: any = null;
   isLoading: boolean = false; 
 
+  owner: User | null = null;
 
+  
 
   constructor(private route: ActivatedRoute, private projectService: ProjectService, private userService: UserService) { }
 
@@ -61,7 +63,6 @@ export class ProjectDetailsComponent implements OnInit {
           this.isLoading = false; 
         }
       });
-
     } else {
       console.error('No project ID found in route parameters');
     }
